@@ -459,6 +459,14 @@ const GLOSSARY = {
   valuefalle: { t: "Value-Falle", long: "Value Trap",
     d: "Eine Aktie, die nach Kennzahlen billig aussieht, aber zu Recht billig ist, weil sich das Geschäft dauerhaft verschlechtert. Der faire Wert aus der Vergangenheit wird dann nie wieder erreicht.",
     rule: "Je größer der Abschlag, desto genauer solltest du nach dem Grund suchen: Nachrichten, sinkende Margen, neue Konkurrenz, Patentabläufe." },
+  negek: { t: "Negatives Eigenkapital",
+    d: "Die Schulden eines Unternehmens sind höher als sein in der Bilanz ausgewiesenes Vermögen. Das Eigenkapital rutscht also unter null.",
+    ex: "McDonald's, Starbucks oder Home Depot haben negatives Eigenkapital, weil sie über Jahre sehr viele eigene Aktien zurückgekauft haben.",
+    rule: "Bei hochprofitablen Firmen mit stabilem Cashflow ist das meist eine bewusste Finanzierungsentscheidung. Bei Firmen mit Verlusten ist es ein Alarmzeichen." },
+  rueckkauf: { t: "Aktienrückkauf", long: "Share Buyback",
+    d: "Das Unternehmen kauft eigene Aktien an der Börse zurück und zieht sie meist ein. Dadurch gibt es weniger Aktien, und jedem verbleibenden Aktionär gehört ein größeres Stück des Gewinns.",
+    ex: "Gewinn 10 Mrd. €, 1 Mrd. Aktien → 10 € je Aktie. Nach Rückkauf von 10 % der Aktien: 10 Mrd. € / 0,9 Mrd. = 11,11 € je Aktie.",
+    rule: "Rückkäufe sind eine Alternative zur Dividende. Sinnvoll sind sie vor allem, wenn die Aktie günstig bewertet ist." },
   umsatz: { t: "Umsatz", long: "Erlöse",
     d: "Alle Einnahmen aus dem Verkauf von Produkten und Dienstleistungen in einem Jahr, bevor Kosten abgezogen werden.",
     rule: "Ohne Umsatzwachstum kann ein Gewinn auf Dauer nicht wachsen." },
@@ -912,7 +920,7 @@ function qualityRows(s) {
     !fin && { k: term("marge"), v: pct(q.opMargin), st: state(q.opMargin, 0.18, 0.07) },
     !fin && { k: term("fcfmarge"), v: pct(q.fcfMargin), st: state(q.fcfMargin, 0.1, 0.03) },
     !fin && { k: term("verschuldung"), v: q.netDebtEbitda == null ? "–" : q.netDebtEbitda < 0 ? "Nettocash" : fmt(q.netDebtEbitda, 1) + "×", st: q.netDebtEbitda == null ? "none" : state(q.netDebtEbitda, 1.5, 3.5, false) },
-    { k: term("ekquote"), v: pct(q.equityRatio, 0), st: fin ? "none" : state(q.equityRatio, 0.35, 0.15) },
+    { k: term("ekquote"), v: q.equityRatio != null && q.equityRatio < 0 ? "negativ" : pct(q.equityRatio, 0), st: fin || (q.equityRatio != null && q.equityRatio < 0) ? "none" : state(q.equityRatio, 0.35, 0.15) },
     { k: term("stabilitaet", "Gewinnstabilität (R²)"), v: fmt(q.epsStability, 2), st: state(q.epsStability, 0.75, 0.3) },
     { k: "Jahre mit Umsatzplus", v: q.revUpShare == null ? "–" : pct(q.revUpShare, 0), st: state(q.revUpShare, 0.75, 0.4) },
   ].filter(Boolean);
@@ -923,6 +931,12 @@ function qualityText(s) {
   const q = s.quality, out = [];
   const lbl = qualityLabel(s.scores.quality);
   out.push(`Mit <strong>${s.scores.quality ?? "–"} von 100 Punkten</strong> ist das Ergebnis: <strong>${lbl.toLowerCase()}</strong>. Eine Qualitätsaktie verdient viel Geld im Verhältnis zum eingesetzten Kapital, wächst gleichmäßig und ist nicht zu hoch verschuldet.`);
+  if (q.equityRatio != null && q.equityRatio < 0) {
+    const profitable = (q.opMargin ?? 0) > 0.1 && (q.fcfMargin ?? 0) > 0.05;
+    out.push(`Das Unternehmen hat ein ${term("negek", "negatives Eigenkapital")}. ${profitable
+      ? `Das ist hier kein Warnsignal: Der Konzern ist sehr profitabel und hat über Jahre mehr Geld für ${term("rueckkauf", "Aktienrückkäufe")} und Dividenden ausgegeben, als er an Gewinnen einbehalten hat. Die ${term("roe")} und die ${term("ekquote")} sind deshalb nicht aussagekräftig und fließen nicht in die Note ein.`
+      : `Bei einem wenig profitablen Unternehmen ist das ein ernstes Warnsignal: Die Schulden übersteigen das gesamte Vermögen. Schau dir die Verschuldung genau an.`}`);
+  }
   if (q.roe != null) out.push(`Die ${term("roe")} beträgt <strong>${pct(q.roe)}</strong>. ${q.roe >= 0.15 ? "Das ist stark: Das Unternehmen erwirtschaftet viel Gewinn aus dem Geld seiner Eigentümer, oft ein Zeichen für einen Wettbewerbsvorteil." : q.roe >= 0.08 ? "Das ist ordentlich, aber nicht herausragend." : "Das ist schwach: Aus dem Eigenkapital wird wenig Gewinn gemacht."}`);
   if (!s.isFinancial && q.opMargin != null) out.push(`Von jedem Euro ${term("umsatz")} bleiben <strong>${fmt(q.opMargin * 100, 0)} Cent</strong> als operativer Gewinn (${term("marge")}).${q.fcfMargin != null ? ` Als frei verfügbares Geld (${term("fcf")}) bleiben ${fmt(q.fcfMargin * 100, 0)} Cent.` : ""}`);
   if (q.epsStability != null) out.push(`Die ${term("stabilitaet")} liegt bei <strong>${fmt(q.epsStability, 2)}</strong>. ${q.epsStability >= 0.75 ? "Der Gewinn je Aktie ist sehr gleichmäßig gestiegen, ein berechenbares Geschäft." : q.epsStability >= 0.4 ? "Der Gewinn ist zwar gestiegen, aber mit spürbaren Schwankungen." : "Der Gewinn schwankt stark oder ist nicht gestiegen. Das macht den fairen Wert unsicherer."}${q.negEpsYears ? ` In ${q.negEpsYears} Jahr(en) gab es sogar einen Verlust.` : ""}`);

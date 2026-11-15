@@ -4,9 +4,8 @@ on:
   schedule:
     # Montag bis Freitag, 23:17 Uhr UTC (nach US-Börsenschluss)
     - cron: "17 23 * * 1-5"
+  # Manuell starten: Reiter "Actions" -> "Run workflow". Hochgeladene Änderungen gehen beim nächsten Lauf online.
   workflow_dispatch: {}
-  push:
-    branches: [main]
 
 permissions:
   contents: write
