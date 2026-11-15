@@ -1,0 +1,1242 @@
+<title>Wertkompass</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: ruhige Kopfzeile; Screener = Leitartikel-Kopf mit Suche, Kennzahlen-Leiste, darunter Filterspalte links + Ergebnisliste rechts.
+   Steckbrief = Kopf mit Bewertungsskala, Notenleiste, dann Kapitel in zwei Spalten (Erklärung | Zahlen). */
+:root {
+  --bg: #f6f6f3;
+  --surface: #ffffff;
+  --surface-2: #efefeb;
+  --ink: #101614;
+  --muted: #646d69;
+  --faint: #959d99;
+  --line: #e2e4df;
+  --line-strong: #cdd2cc;
+  --accent: #154d3f;
+  --accent-ink: #ffffff;
+  --accent-soft: #e2ede8;
+  --brass: #94722f;
+  --brass-soft: #f3ecdc;
+  --good: #2c7a4d;
+  --good-soft: #e3f0e7;
+  --warn: #9c6a12;
+  --warn-soft: #f5ecd8;
+  --bad: #a3403a;
+  --bad-soft: #f5e2df;
+  --price: #22304a;
+  --mono-l: 90%;
+  --mono-ink: 26%;
+  --shadow: 0 1px 2px rgba(16, 22, 20, .04), 0 8px 28px rgba(16, 22, 20, .06);
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body: "Geist", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b0e0d; --surface: #121715; --surface-2: #19201d; --ink: #eaede8; --muted: #9ba49f; --faint: #6c7571;
+    --line: #212a26; --line-strong: #303b36; --accent: #8acbb2; --accent-ink: #0b0e0d; --accent-soft: #163029;
+    --brass: #d8b97f; --brass-soft: #2c2619; --good: #7cc99c; --good-soft: #14281c; --warn: #e2b462; --warn-soft: #2e2512;
+    --bad: #ec8b80; --bad-soft: #331a1a; --price: #c3cfe6; --mono-l: 21%; --mono-ink: 82%;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0b0e0d; --surface: #121715; --surface-2: #19201d; --ink: #eaede8; --muted: #9ba49f; --faint: #6c7571;
+  --line: #212a26; --line-strong: #303b36; --accent: #8acbb2; --accent-ink: #0b0e0d; --accent-soft: #163029;
+  --brass: #d8b97f; --brass-soft: #2c2619; --good: #7cc99c; --good-soft: #14281c; --warn: #e2b462; --warn-soft: #2e2512;
+  --bad: #ec8b80; --bad-soft: #331a1a; --price: #c3cfe6; --mono-l: 21%; --mono-ink: 82%;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 15px; line-height: 1.55; -webkit-font-smoothing: antialiased;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 56px;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 500; text-wrap: balance; line-height: 1.15; margin: 0; letter-spacing: -0.01em; font-optical-sizing: auto; }
+p { margin: 0; }
+a { color: var(--accent); text-underline-offset: 3px; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.wrap { max-width: 1240px; margin: 0 auto; }
+.eyebrow { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); font-weight: 500; }
+.muted { color: var(--muted); }
+
+/* ---- Kopfzeile ---- */
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px);
+  display: flex; align-items: center; gap: 28px; flex-wrap: wrap; padding-block: 16px; border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+.brand b { font-family: var(--font-display); font-weight: 500; font-size: 1.3rem; letter-spacing: -0.02em; }
+.nav { display: flex; gap: 22px; }
+.nav a { text-decoration: none; color: var(--muted); font-size: 0.9rem; padding-block: 4px; border-bottom: 1.5px solid transparent; }
+.nav a:hover { color: var(--ink); }
+.nav a[aria-current="page"] { color: var(--ink); border-color: var(--brass); }
+.stamp { margin-left: auto; color: var(--faint); font-size: 0.8rem; }
+
+/* ---- Screener-Kopf ---- */
+.lead { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 32px 56px; align-items: end; padding-block: 48px 36px; }
+.lead h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 400; letter-spacing: -0.025em; margin-top: 14px; }
+.lead h1 em { font-style: italic; color: var(--brass); }
+.lead p { color: var(--muted); font-size: 1.02rem; max-width: 52ch; margin-top: 16px; }
+.searchbox { position: relative; }
+.searchbox label { display: block; margin-bottom: 10px; }
+.sfield {
+  display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--line-strong); border-radius: 14px;
+  padding: 0 16px; box-shadow: var(--shadow); transition: border-color .15s;
+}
+.sfield:focus-within { border-color: var(--accent); }
+.sfield svg { flex: none; color: var(--faint); }
+.sfield input { flex: 1; min-width: 0; border: 0; background: transparent; font: inherit; font-size: 1.05rem; color: var(--ink); padding: 16px 0; outline: none; }
+.sfield kbd { font-family: var(--font-mono); font-size: 0.72rem; color: var(--faint); border: 1px solid var(--line); border-radius: 5px; padding: 2px 6px; }
+.suggest {
+  position: absolute; left: 0; right: 0; top: calc(100% + 8px); z-index: 25; background: var(--surface); border: 1px solid var(--line);
+  border-radius: 14px; box-shadow: var(--shadow); padding: 6px; max-height: 420px; overflow-y: auto;
+}
+.sopt { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 9px 10px; border-radius: 9px; cursor: pointer; }
+.sopt[aria-selected="true"], .sopt:hover { background: var(--surface-2); }
+.sopt .n { font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sopt .m { font-size: 0.8rem; color: var(--muted); }
+.snone { padding: 14px 12px; color: var(--muted); font-size: 0.9rem; }
+
+.mono {
+  --h: 160; width: 34px; height: 34px; flex: none; border-radius: 9px; display: grid; place-items: center;
+  background: hsl(var(--h) 22% var(--mono-l)); color: hsl(var(--h) 35% var(--mono-ink));
+  font-family: var(--font-display); font-weight: 600; font-size: 0.85rem; letter-spacing: -0.02em;
+}
+.mono.lg { width: 56px; height: 56px; border-radius: 14px; font-size: 1.3rem; }
+
+.pulse { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-block: 1px solid var(--line); margin-bottom: 36px; }
+.pulse > div { padding: 18px 20px 18px 0; display: grid; gap: 4px; align-content: start; }
+.pulse > div + div { padding-left: 20px; border-left: 1px solid var(--line); }
+.pulse .v { font-family: var(--font-display); font-size: 2rem; font-weight: 400; letter-spacing: -0.02em; line-height: 1.1; }
+.pulse .l { font-size: 0.84rem; color: var(--muted); }
+
+.lists { display: flex; gap: 26px; border-bottom: 1px solid var(--line); margin-bottom: 24px; overflow-x: auto; scrollbar-width: none; }
+.lists button { padding: 10px 0 12px; color: var(--muted); white-space: nowrap; border-bottom: 2px solid transparent; margin-bottom: -1px; font-size: 0.95rem; }
+.lists button:hover { color: var(--ink); }
+.lists button[aria-pressed="true"] { color: var(--ink); border-color: var(--ink); font-weight: 500; }
+.lists .desc { margin-left: auto; align-self: center; color: var(--faint); font-size: 0.85rem; white-space: nowrap; padding-left: 16px; }
+
+/* ---- Filter + Liste ---- */
+.board { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 36px; align-items: start; }
+.side-f { display: grid; gap: 26px; position: sticky; top: 92px; max-height: calc(100vh - 110px); overflow-y: auto; padding-right: 4px; scrollbar-width: thin; }
+.fgroup { display: grid; gap: 10px; }
+.fhead { display: flex; justify-content: space-between; align-items: baseline; }
+.fhead button { font-size: 0.78rem; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+.checks { display: grid; gap: 2px; }
+.check { display: grid; grid-template-columns: 16px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 5px 0; cursor: pointer; font-size: 0.9rem; }
+.check input { appearance: none; width: 16px; height: 16px; border: 1.5px solid var(--line-strong); border-radius: 4px; margin: 0; display: grid; place-items: center; cursor: pointer; background: var(--surface); }
+.check input:checked { background: var(--accent); border-color: var(--accent); }
+.check input:checked::after { content: ""; width: 8px; height: 4px; border: 2px solid var(--accent-ink); border-top: 0; border-right: 0; transform: rotate(-45deg) translate(1px, -1px); }
+.check .c { color: var(--faint); font-family: var(--font-mono); font-size: 0.75rem; }
+.range { display: grid; gap: 8px; }
+.range .rl { display: flex; justify-content: space-between; font-size: 0.9rem; }
+.range .rl b { font-family: var(--font-mono); font-weight: 500; font-size: 0.85rem; }
+input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 22px; background: transparent; margin: 0; }
+input[type=range]::-webkit-slider-runnable-track { height: 3px; background: var(--line-strong); border-radius: 2px; }
+input[type=range]::-moz-range-track { height: 3px; background: var(--line-strong); border-radius: 2px; }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--surface); border: 1.5px solid var(--ink); margin-top: -6.5px; box-shadow: var(--shadow); }
+input[type=range]::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: var(--surface); border: 1.5px solid var(--ink); }
+.switch { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 0.9rem; cursor: pointer; }
+.switch input { appearance: none; width: 34px; height: 20px; border-radius: 999px; background: var(--line-strong); position: relative; margin: 0; cursor: pointer; transition: background .15s; flex: none; }
+.switch input::after { content: ""; position: absolute; top: 3px; left: 3px; width: 14px; height: 14px; border-radius: 50%; background: var(--surface); transition: transform .15s; }
+.switch input:checked { background: var(--accent); }
+.switch input:checked::after { transform: translateX(14px); }
+.reset { justify-self: start; font-size: 0.85rem; color: var(--muted); border: 1px solid var(--line); border-radius: 8px; padding: 7px 12px; }
+.reset:hover { color: var(--ink); border-color: var(--line-strong); }
+.ftoggle { display: none; }
+
+.rbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+.rbar .count { font-size: 0.92rem; color: var(--muted); }
+.rbar .count b { color: var(--ink); font-weight: 500; }
+.sortsel { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; color: var(--muted); }
+.sortsel select { font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 6px 28px 6px 10px; }
+
+.tablebox { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); }
+table.screen { border-collapse: collapse; width: 100%; min-width: 900px; font-size: 0.9rem; }
+.screen th {
+  text-align: right; font-weight: 500; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--faint);
+  padding: 14px 10px 12px; border-bottom: 1px solid var(--line); white-space: nowrap; cursor: pointer; user-select: none;
+}
+.screen th:hover { color: var(--ink); }
+.screen th[aria-sort] { color: var(--ink); }
+.screen th:nth-child(-n+2), .screen td:nth-child(-n+2) { text-align: left; }
+.screen td { padding: 12px 10px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; vertical-align: middle; }
+.screen tbody tr { cursor: pointer; transition: background .12s; }
+.screen tbody tr:hover { background: var(--surface-2); }
+.screen tbody tr:last-child td { border-bottom: 0; }
+.screen td.rk { color: var(--faint); font-family: var(--font-mono); font-size: 0.78rem; width: 1%; padding-right: 0; }
+.co { display: flex; gap: 12px; align-items: center; min-width: 210px; white-space: normal; }
+.co .n { font-weight: 500; display: block; line-height: 1.3; }
+.co .m { color: var(--muted); font-size: 0.78rem; }
+.ring { display: inline-grid; place-items: center; position: relative; width: 38px; height: 38px; }
+.ring svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+.ring span { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 500; }
+.bar { display: inline-flex; align-items: center; gap: 8px; justify-content: flex-end; }
+.bar i { display: block; width: 34px; height: 4px; border-radius: 2px; background: var(--surface-2); overflow: hidden; }
+.bar i b { display: block; height: 100%; border-radius: 2px; }
+.bar span { font-family: var(--font-mono); font-size: 0.82rem; min-width: 1.6em; }
+.dv { display: inline-grid; grid-template-columns: 52px auto; gap: 10px; align-items: center; }
+.dv .track { position: relative; height: 4px; background: var(--surface-2); border-radius: 2px; }
+.dv .track::before { content: ""; position: absolute; left: 50%; top: -3px; bottom: -3px; width: 1px; background: var(--line-strong); }
+.dv .track b { position: absolute; top: 0; height: 100%; border-radius: 2px; }
+.up { color: var(--good); }
+.down { color: var(--bad); }
+.more { display: flex; justify-content: center; padding: 18px 0 0; }
+.more button { border: 1px solid var(--line-strong); border-radius: 10px; padding: 9px 18px; font-size: 0.9rem; background: var(--surface); }
+.more button:hover { border-color: var(--ink); }
+.empty { padding: 48px 24px; text-align: center; color: var(--muted); }
+.hint { color: var(--faint); font-size: 0.84rem; margin-top: 14px; }
+
+.score { display: inline-flex; align-items: center; justify-content: center; min-width: 34px; padding: 2px 7px; border-radius: 6px; font-family: var(--font-mono); font-size: 0.82rem; }
+.s-good { background: var(--good-soft); color: var(--good); }
+.s-warn { background: var(--warn-soft); color: var(--warn); }
+.s-bad { background: var(--bad-soft); color: var(--bad); }
+.s-none { background: var(--surface-2); color: var(--muted); }
+
+/* ---- Steckbrief ---- */
+.crumb { display: flex; gap: 8px; align-items: center; font-size: 0.85rem; color: var(--muted); padding-block: 26px 0; }
+.crumb a { color: var(--muted); text-decoration: none; }
+.crumb a:hover { color: var(--ink); }
+.dhero { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px 40px; align-items: end; padding-block: 22px 30px; }
+.dhero .idt { display: flex; gap: 18px; align-items: center; min-width: 0; }
+.dhero h1 { font-size: clamp(1.9rem, 4.2vw, 3rem); font-weight: 400; letter-spacing: -0.025em; }
+.dhero .meta { color: var(--muted); margin-top: 6px; font-size: 0.92rem; }
+.quote { text-align: right; display: grid; gap: 8px; justify-items: end; }
+.quote .px { font-family: var(--font-mono); font-size: 2rem; font-weight: 400; letter-spacing: -0.03em; line-height: 1; }
+.badge { display: inline-flex; gap: 8px; align-items: center; padding: 5px 12px; border-radius: 999px; font-size: 0.85rem; font-weight: 500; }
+.badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+.valpanel { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow); padding: 26px 28px; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr); gap: 28px 44px; align-items: center; margin-bottom: 18px; }
+.valpanel .fv { font-family: var(--font-display); font-size: 2.6rem; font-weight: 400; letter-spacing: -0.02em; line-height: 1.05; margin-top: 8px; }
+.valpanel .fvs { color: var(--muted); margin-top: 8px; font-size: 0.92rem; }
+.scale { position: relative; padding-top: 34px; padding-bottom: 30px; }
+.scale .band { height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--bad-soft), var(--warn-soft) 42%, var(--warn-soft) 58%, var(--good-soft)); border: 1px solid var(--line); }
+.scale .pin { position: absolute; top: 0; transform: translateX(-50%); display: grid; justify-items: center; gap: 4px; font-size: 0.78rem; white-space: nowrap; }
+.scale .pin i { width: 2px; height: 50px; border-radius: 1px; }
+.scale .pin span { font-family: var(--font-mono); }
+.scale .pin.below { top: auto; bottom: 0; }
+.scale .ends { display: flex; justify-content: space-between; color: var(--faint); font-size: 0.75rem; margin-top: 8px; }
+
+.grades { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: var(--surface); border: 1px solid var(--line); border-radius: 18px; margin-bottom: 8px; }
+.grade { padding: 20px 22px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 16px; align-items: center; }
+.grade + .grade { border-left: 1px solid var(--line); }
+.grade .ring { grid-row: span 2; width: 54px; height: 54px; }
+.grade .ring span { font-size: 1rem; }
+.grade .gl { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
+.grade .gt { font-size: 0.9rem; line-height: 1.35; }
+
+.chap-nav { position: sticky; top: 70px; z-index: 15; display: flex; gap: 24px; padding-block: 14px; background: color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); margin-bottom: 8px; overflow-x: auto; scrollbar-width: none; }
+.chap-nav button { color: var(--muted); font-size: 0.88rem; white-space: nowrap; }
+.chap-nav button:hover { color: var(--ink); }
+
+.chap { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 24px 56px; padding-block: 44px; border-bottom: 1px solid var(--line); scroll-margin-top: 130px; }
+.chap > header { grid-column: 1 / -1; display: grid; gap: 10px; }
+.chap > header h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 400; }
+.explain { display: grid; gap: 14px; max-width: 64ch; align-content: start; min-width: 0; }
+.explain p { line-height: 1.7; color: color-mix(in srgb, var(--ink) 88%, var(--muted)); }
+.explain strong { color: var(--ink); font-weight: 600; }
+.side { display: grid; gap: 16px; align-content: start; min-width: 0; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px; }
+.panel .ph { display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.8rem; color: var(--muted); margin-bottom: 10px; }
+.key { display: inline-flex; align-items: center; gap: 7px; }
+.key i { width: 14px; height: 2px; border-radius: 1px; display: inline-block; }
+.chart { position: relative; height: 260px; }
+.chart.sm { height: 220px; }
+.kv { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 4px 18px; }
+.kv div { display: grid; grid-template-columns: minmax(0, 1fr) auto 10px; gap: 14px; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--line); }
+.kv div:last-child { border-bottom: 0; }
+.kv .k { font-size: 0.9rem; }
+.kv .v { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 0.9rem; text-align: right; }
+.dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
+.d-good { background: var(--good); } .d-warn { background: var(--warn); } .d-bad { background: var(--bad); } .d-none { background: var(--line-strong); }
+.methods { display: grid; gap: 0; border-top: 1px solid var(--line); margin-top: 6px; }
+.method { display: grid; gap: 6px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.method .mh { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: baseline; }
+.method .mh span:first-child { font-family: var(--font-display); font-size: 1.1rem; }
+.method .mh .num { font-size: 1rem; }
+.method p { font-size: 0.9rem; line-height: 1.6; color: var(--muted); }
+.method .calc { font-family: var(--font-mono); font-size: 0.8rem; color: var(--brass); overflow-wrap: anywhere; }
+.note { color: var(--faint); font-size: 0.82rem; line-height: 1.55; }
+.verdict { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.plist { border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; background: var(--surface); }
+.plist h3 { font-size: 1.15rem; margin-bottom: 12px; display: flex; gap: 10px; align-items: center; }
+.plist h3::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.plist ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 9px; }
+.plist li { padding-left: 16px; position: relative; font-size: 0.93rem; }
+.plist li::before { content: "–"; position: absolute; left: 0; color: var(--faint); }
+.about { grid-column: 1 / -1; color: var(--muted); font-size: 0.92rem; max-width: 85ch; line-height: 1.65; }
+.about b { color: var(--ink); font-weight: 500; }
+
+/* ---- Fachbegriffe ---- */
+dfn.t { font-style: normal; font-weight: 500; color: var(--ink); text-decoration: underline dotted var(--brass); text-decoration-thickness: 1.5px; text-underline-offset: 4px; cursor: help; }
+.pop { position: absolute; z-index: 40; max-width: min(360px, calc(100vw - 32px)); background: var(--ink); color: var(--bg); border-radius: 12px; padding: 14px 16px; font-size: 0.86rem; line-height: 1.55; box-shadow: 0 16px 40px rgba(0,0,0,.25); }
+.pop b { display: block; font-family: var(--font-display); font-weight: 500; font-size: 1rem; margin-bottom: 6px; }
+.pop a { color: inherit; font-weight: 500; }
+
+/* ---- Lexikon & Methodik ---- */
+.page { max-width: 780px; display: grid; gap: 20px; padding-block: 44px 0; }
+.page h1 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 400; }
+.page h2 { font-size: 1.5rem; font-weight: 400; margin-top: 18px; }
+.page .intro { color: var(--muted); font-size: 1.02rem; }
+.page ul { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; }
+.gl { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.gl article { padding: 20px 0; border-bottom: 1px solid var(--line); display: grid; gap: 8px; scroll-margin-top: 90px; }
+.gl article:target h3 { color: var(--brass); }
+.gl h3 { font-size: 1.3rem; display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.gl h3 span { font-family: var(--font-body); font-size: 0.85rem; color: var(--muted); }
+.gl .ex { font-size: 0.9rem; color: var(--muted); }
+.gl .rule { font-size: 0.9rem; }
+.steps { display: grid; gap: 0; counter-reset: s; padding: 0; margin: 0; list-style: none; border-top: 1px solid var(--line); }
+.steps li { padding: 20px 0 20px 56px; position: relative; border-bottom: 1px solid var(--line); display: grid; gap: 6px; }
+.steps li::before { counter-increment: s; content: counter(s); position: absolute; left: 0; top: 16px; font-family: var(--font-display); font-size: 1.9rem; color: var(--brass); line-height: 1; }
+.steps h3 { font-size: 1.2rem; }
+.disclaimer { margin-top: 56px; color: var(--faint); font-size: 0.8rem; border-top: 1px solid var(--line); padding-top: 18px; max-width: 90ch; }
+.loading { padding: 120px 0; text-align: center; color: var(--muted); }
+
+@media (max-width: 1000px) {
+  .board { grid-template-columns: minmax(0, 1fr); }
+  .side-f { position: static; max-height: none; display: none; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px; }
+  .side-f.open { display: grid; }
+  .ftoggle { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line-strong); border-radius: 10px; padding: 8px 14px; font-size: 0.9rem; background: var(--surface); }
+  .lead { grid-template-columns: minmax(0, 1fr); padding-block: 32px 28px; }
+  .pulse { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pulse > div:nth-child(3) { padding-left: 0; border-left: 0; }
+  .pulse > div:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .grades { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grade:nth-child(3) { border-left: 0; }
+  .grade:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .chap { grid-template-columns: minmax(0, 1fr); }
+  .valpanel { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 600px) {
+  .top { gap: 10px 20px; }
+  .stamp { margin-left: 0; width: 100%; }
+  .dhero { grid-template-columns: minmax(0, 1fr); }
+  .quote { justify-items: start; text-align: left; }
+  .grades { grid-template-columns: minmax(0, 1fr); }
+  .grade + .grade { border-left: 0; border-top: 1px solid var(--line); }
+  .verdict { grid-template-columns: minmax(0, 1fr); }
+  .pulse .v { font-size: 1.6rem; }
+  .valpanel { padding: 20px; }
+  .lists .desc { display: none; }
+  .chap-nav { top: 104px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#screener" aria-label="Wertkompass, zur Übersicht">
+      <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
+        <circle cx="13" cy="13" r="12" fill="none" stroke="var(--ink)" stroke-width="1.2"/>
+        <circle cx="13" cy="13" r="8.5" fill="none" stroke="var(--line-strong)" stroke-width="0.8"/>
+        <path d="M13 3.5 L15.2 13 L13 22.5 L10.8 13 Z" fill="var(--ink)"/>
+        <path d="M13 3.5 L15.2 13 L10.8 13 Z" fill="var(--brass)"/>
+      </svg>
+      <b>Wertkompass</b>
+    </a>
+    <nav class="nav" aria-label="Bereiche">
+      <a href="#screener" data-nav="screener">Screener</a>
+      <a href="#methode" data-nav="methode">Methodik</a>
+      <a href="#lexikon" data-nav="lexikon">Lexikon</a>
+    </nav>
+    <span class="stamp" id="stamp"></span>
+  </header>
+  <main id="view"><div class="loading">Daten werden geladen …</div></main>
+  <p class="disclaimer">Wertkompass ist ein Lern- und Analysewerkzeug und keine Anlageberatung. Alle Werte stammen aus öffentlichen Daten (Yahoo Finance) und können fehlerhaft oder veraltet sein. Der faire Wert ist eine Schätzung auf Basis vergangener Bewertungen und Analystenprognosen, keine Kursprognose.</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+"use strict";
+/* ======================================================================
+   Lexikon: alle Fachbegriffe, die in den Erklärungen verlinkt werden
+   ====================================================================== */
+const GLOSSARY = {
+  kgv: { t: "KGV", long: "Kurs-Gewinn-Verhältnis", en: "P/E ratio",
+    d: "Aktienkurs geteilt durch den Gewinn je Aktie. Sagt, wie viele Jahresgewinne du beim Kauf bezahlst.",
+    ex: "Kurs 100 €, Gewinn je Aktie 5 € → KGV 20. Du zahlst das 20-fache des Jahresgewinns.",
+    rule: "Ein KGV ist nur im Vergleich sinnvoll: mit dem eigenen Durchschnitt der Vergangenheit oder mit ähnlichen Firmen. Wachstumsstarke Firmen haben meist ein höheres KGV." },
+  fkgv: { t: "Forward-KGV", long: "erwartetes KGV", en: "Forward P/E",
+    d: "Wie das KGV, aber mit dem Gewinn, den Analysten für das laufende Geschäftsjahr erwarten, statt mit dem vergangenen Gewinn.",
+    ex: "Kurs 100 €, erwarteter Gewinn 6 € → Forward-KGV 16,7.",
+    rule: "Liegt das Forward-KGV deutlich unter dem aktuellen KGV, erwarten Analysten steigende Gewinne." },
+  avgkgv: { t: "Ø-KGV", long: "historisches Durchschnitts-KGV",
+    d: "Das KGV, das Anleger in den vergangenen Jahren im Mittel für diese Aktie bezahlt haben. Wir nehmen den Median, damit einzelne Ausreißerjahre nicht verzerren.",
+    ex: "KGV der letzten Jahre: 18, 22, 25, 20 → Median 21.",
+    rule: "Das Ø-KGV ist der Maßstab, was der Markt für dieses Unternehmen normalerweise zu zahlen bereit ist." },
+  eps: { t: "Gewinn je Aktie", long: "EPS, Earnings per Share",
+    d: "Der Jahresgewinn (Nettogewinn) des Unternehmens geteilt durch die Anzahl der Aktien. Der Anteil am Gewinn, der auf eine einzelne Aktie entfällt.",
+    ex: "Gewinn 1 Mrd. €, 200 Mio. Aktien → 5 € Gewinn je Aktie.",
+    rule: "Steigt der Gewinn je Aktie über Jahre gleichmäßig, steigt meist auch der Aktienkurs mit." },
+  kcv: { t: "KCV", long: "Kurs-Cashflow-Verhältnis", en: "P/CF",
+    d: "Aktienkurs geteilt durch den operativen Cashflow je Aktie. Wie das KGV, nur mit dem tatsächlich zugeflossenen Geld statt mit dem buchhalterischen Gewinn.",
+    ex: "Kurs 100 €, operativer Cashflow je Aktie 8 € → KCV 12,5.",
+    rule: "Der Cashflow ist schwerer zu „schönen“ als der Gewinn. Ein niedriges KCV im Vergleich zur Vergangenheit spricht für eine günstige Bewertung." },
+  ocf: { t: "Operativer Cashflow", long: "Cashflow aus laufender Geschäftstätigkeit",
+    d: "Das Geld, das aus dem normalen Geschäft wirklich in die Kasse geflossen ist (Einnahmen minus Ausgaben, ohne Investitionen und Finanzierung).",
+    rule: "Ist der operative Cashflow über Jahre deutlich kleiner als der Gewinn, solltest du genauer hinschauen." },
+  fcf: { t: "Free Cashflow", long: "freier Cashflow, FCF",
+    d: "Operativer Cashflow minus Investitionen (z. B. in Maschinen, Gebäude, Software). Das Geld, das übrig bleibt und für Dividenden, Aktienrückkäufe oder Schuldenabbau frei ist.",
+    ex: "Operativer Cashflow 10 Mrd. €, Investitionen 3 Mrd. € → Free Cashflow 7 Mrd. €.",
+    rule: "Dividenden sollten dauerhaft aus dem Free Cashflow bezahlt werden können." },
+  divrendite: { t: "Dividendenrendite", en: "Dividend Yield",
+    d: "Dividende der letzten 12 Monate geteilt durch den aktuellen Aktienkurs. Die jährliche „Verzinsung“ deines Einsatzes durch Ausschüttungen.",
+    ex: "Dividende 3 €, Kurs 100 € → Dividendenrendite 3 %.",
+    rule: "2–5 % gilt bei stabilen Firmen als attraktiv. Sehr hohe Renditen (über 7 %) entstehen oft, weil der Kurs gefallen ist und der Markt eine Kürzung befürchtet." },
+  avgrendite: { t: "Ø-Dividendenrendite", long: "historische Durchschnittsrendite",
+    d: "Die Dividendenrendite, die die Aktie in den letzten 5 Jahren im Mittel hatte (Jahresdividende geteilt durch den Durchschnittskurs des Jahres).",
+    rule: "Ist die Rendite heute höher als üblich, ist die Aktie im Verhältnis zur Dividende gerade günstiger als sonst." },
+  payout: { t: "Ausschüttungsquote", long: "Payout Ratio (gewinnbasiert)",
+    d: "Anteil des Gewinns, der als Dividende ausgezahlt wird: Dividende je Aktie geteilt durch Gewinn je Aktie.",
+    ex: "Gewinn je Aktie 5 €, Dividende 2 € → Ausschüttungsquote 40 %.",
+    rule: "Bis etwa 60–65 % ist meist gesund, dann bleibt Geld für Wachstum und Puffer für schlechte Jahre. Über 100 % zahlt die Firma mehr aus, als sie verdient. Ausnahme: Immobilien-Gesellschaften (REITs) müssen viel ausschütten und werden am Cashflow gemessen." },
+  payoutfcf: { t: "Ausschüttungsquote (FCF)", long: "cashflowbasierte Ausschüttungsquote",
+    d: "Gezahlte Dividenden geteilt durch den Free Cashflow. Zeigt, ob die Dividende wirklich vom erwirtschafteten Geld gedeckt ist.",
+    rule: "Unter 70 % ist komfortabel. Dauerhaft über 100 % geht nur mit neuen Schulden oder Rücklagen." },
+  divwachstum: { t: "Dividendenwachstum", long: "jährliche Wachstumsrate der Dividende",
+    d: "Um wie viel Prozent die Dividende pro Jahr im Schnitt gestiegen ist (als CAGR über 5 bzw. 10 Jahre).",
+    ex: "Dividende vor 5 Jahren 2,00 €, heute 2,93 € → rund 8 % Wachstum pro Jahr.",
+    rule: "Eine niedrige Startrendite mit hohem Dividendenwachstum kann über die Jahre mehr einbringen als eine hohe Rendite ohne Wachstum." },
+  kontinuitaet: { t: "Dividendenkontinuität",
+    d: "Wie viele Jahre in Folge die Dividende erhöht bzw. mindestens gehalten wurde.",
+    rule: "Firmen, die die Dividende auch in Krisen (2008/09, 2020) nicht gekürzt haben, gelten als besonders verlässlich. In den USA heißen Firmen mit 25+ Erhöhungen in Folge „Dividend Aristocrats“." },
+  roe: { t: "Eigenkapitalrendite", long: "ROE, Return on Equity",
+    d: "Nettogewinn geteilt durch das Eigenkapital. Wie viel Gewinn das Unternehmen aus dem Geld seiner Eigentümer macht.",
+    ex: "Gewinn 2 Mrd. €, Eigenkapital 10 Mrd. € → Eigenkapitalrendite 20 %.",
+    rule: "Über 15 % gilt als stark, das deutet auf einen Wettbewerbsvorteil hin. Vorsicht: Sehr hohe Schulden können die Eigenkapitalrendite künstlich erhöhen." },
+  marge: { t: "Operative Marge", long: "EBIT-Marge",
+    d: "Operativer Gewinn (vor Zinsen und Steuern) geteilt durch den Umsatz. Wie viel vom Umsatz als Gewinn aus dem Kerngeschäft übrig bleibt.",
+    ex: "Umsatz 100 Mrd. €, operativer Gewinn 20 Mrd. € → Marge 20 %.",
+    rule: "Hohe und stabile Margen zeigen Preissetzungsmacht. Vergleiche aber nur innerhalb einer Branche, ein Supermarkt hat immer niedrigere Margen als ein Softwarehaus." },
+  fcfmarge: { t: "Free-Cashflow-Marge",
+    d: "Free Cashflow geteilt durch den Umsatz. Wie viel vom Umsatz am Ende als frei verfügbares Geld übrig bleibt.",
+    rule: "Über 10 % ist gut, über 20 % ist herausragend." },
+  ebitda: { t: "EBITDA", long: "Gewinn vor Zinsen, Steuern und Abschreibungen",
+    d: "Operativer Gewinn vor Zinsen, Steuern und Abschreibungen. Eine grobe Größe für die laufende Ertragskraft, mit der man Schulden vergleicht.",
+    rule: "Wird vor allem als Maßstab für die Verschuldung benutzt (Nettoverschuldung / EBITDA)." },
+  verschuldung: { t: "Nettoverschuldung / EBITDA", long: "Verschuldungsgrad",
+    d: "Schulden minus vorhandenes Geld, geteilt durch das EBITDA. Wie viele Jahre das Unternehmen bräuchte, um seine Schulden aus dem laufenden Ertrag zu tilgen.",
+    ex: "Nettoschulden 6 Mrd. €, EBITDA 3 Mrd. € → Faktor 2,0.",
+    rule: "Unter 1 sehr solide, bis 2,5 meist unkritisch, über 3,5 riskant. Negative Werte bedeuten: mehr Geld als Schulden (Nettocash)." },
+  ekquote: { t: "Eigenkapitalquote",
+    d: "Eigenkapital geteilt durch die Bilanzsumme. Welcher Anteil des Vermögens nicht über Schulden finanziert ist.",
+    rule: "Bei Industriefirmen sind 30 % und mehr solide. Banken und Versicherungen haben naturgemäß niedrige Quoten." },
+  stabilitaet: { t: "Gewinnstabilität", long: "Bestimmtheitsmaß R²",
+    d: "Misst, wie gleichmäßig der Gewinn je Aktie über die Jahre gestiegen ist. Dazu wird eine Trendlinie durch die Gewinne gelegt: 1,0 heißt, alle Jahre liegen genau auf einer steigenden Linie; 0 heißt, es gibt keinen steigenden Trend.",
+    rule: "Werte über 0,8 deuten auf ein sehr berechenbares Geschäft hin. Das ist der Kern dessen, was eine Qualitätsaktie ausmacht." },
+  cagr: { t: "CAGR", long: "durchschnittliche jährliche Wachstumsrate",
+    d: "Um wie viel Prozent ein Wert pro Jahr im Schnitt gewachsen ist, wenn man das Wachstum gleichmäßig auf alle Jahre verteilt (mit Zinseszins).",
+    ex: "Umsatz steigt in 4 Jahren von 100 auf 146 → CAGR 10 % pro Jahr.",
+    rule: "Glättet Schwankungen und macht Wachstum zwischen Firmen vergleichbar." },
+  fairerwert: { t: "Fairer Wert", long: "innerer Wert",
+    d: "Unsere Schätzung, was eine Aktie bei normaler Bewertung kosten müsste. Wir berechnen ihn mit bis zu drei Methoden (KGV, KCV, Dividendenrendite) und gewichten sie.",
+    rule: "Der faire Wert ist eine Schätzung. Er ist umso verlässlicher, je stabiler das Unternehmen ist. Bei schwankenden Gewinnen solltest du ihn mit Vorsicht lesen." },
+  sicherheitsmarge: { t: "Sicherheitsmarge", long: "Margin of Safety",
+    d: "Der Abstand zwischen fairem Wert und aktuellem Kurs. Je größer, desto mehr Puffer hast du, falls deine Annahmen nicht ganz stimmen.",
+    rule: "Benjamin Graham, der „Vater“ des Value-Investings, empfahl, nur mit deutlicher Sicherheitsmarge zu kaufen." },
+  marktkap: { t: "Marktkapitalisierung", long: "Börsenwert",
+    d: "Aktienkurs mal Anzahl aller Aktien. Was das gesamte Unternehmen an der Börse wert ist." },
+  analysten: { t: "Analystenschätzung", long: "Konsensschätzung",
+    d: "Der Durchschnitt der Prognosen von Bank- und Research-Analysten, z. B. für den Gewinn je Aktie im laufenden Jahr.",
+    rule: "Schätzungen können danebenliegen. Bei stabilen Firmen treffen sie meist besser als bei zyklischen." },
+  zyklisch: { t: "Zyklische Aktie",
+    d: "Ein Unternehmen, dessen Gewinne stark mit der Konjunktur schwanken (z. B. Autohersteller, Chemie, Rohstoffe).",
+    rule: "Bei zyklischen Firmen ist ein niedriges KGV oft eine Falle: Es tritt häufig am Gewinnhoch auf, kurz bevor die Gewinne wieder fallen." },
+  valuefalle: { t: "Value-Falle", long: "Value Trap",
+    d: "Eine Aktie, die nach Kennzahlen billig aussieht, aber zu Recht billig ist, weil sich das Geschäft dauerhaft verschlechtert. Der faire Wert aus der Vergangenheit wird dann nie wieder erreicht.",
+    rule: "Je größer der Abschlag, desto genauer solltest du nach dem Grund suchen: Nachrichten, sinkende Margen, neue Konkurrenz, Patentabläufe." },
+  umsatz: { t: "Umsatz", long: "Erlöse",
+    d: "Alle Einnahmen aus dem Verkauf von Produkten und Dienstleistungen in einem Jahr, bevor Kosten abgezogen werden.",
+    rule: "Ohne Umsatzwachstum kann ein Gewinn auf Dauer nicht wachsen." },
+};
+const term = (k, label) => `<dfn class="t" data-term="${k}" tabindex="0">${label || GLOSSARY[k].t}</dfn>`;
+
+/* ======================================================================
+   Zahlenformate
+   ====================================================================== */
+const nf = (d) => new Intl.NumberFormat("de-DE", { minimumFractionDigits: d, maximumFractionDigits: d });
+const fmt = (v, d = 1) => (v == null || isNaN(v) ? "–" : nf(d).format(v));
+const pct = (v, d = 1) => (v == null || isNaN(v) ? "–" : nf(d).format(v * 100) + " %");
+const spct = (v, d = 0) => (v == null || isNaN(v) ? "–" : (v > 0 ? "+" : v < 0 ? "−" : "") + nf(d).format(Math.abs(v * 100)) + " %");
+const money = (v, ccy, d) => {
+  if (v == null || isNaN(v)) return "–";
+  const dd = d ?? (Math.abs(v) >= 1000 ? 0 : 2);
+  try { return new Intl.NumberFormat("de-DE", { style: "currency", currency: ccy, minimumFractionDigits: dd, maximumFractionDigits: dd }).format(v); }
+  catch { return fmt(v, dd) + " " + ccy; }
+};
+const bigEUR = (v) => {
+  if (v == null) return "–";
+  if (v >= 1e12) return fmt(v / 1e12, 2) + " Bio. €";
+  if (v >= 1e9) return fmt(v / 1e9, 1) + " Mrd. €";
+  return fmt(v / 1e6, 0) + " Mio. €";
+};
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const cls = (score) => (score == null ? "s-none" : score >= 70 ? "s-good" : score >= 45 ? "s-warn" : "s-bad");
+const dotc = (state) => ({ good: "d-good", warn: "d-warn", bad: "d-bad" }[state] || "d-none");
+
+function verdict(up) {
+  if (up == null) return { t: "Keine Bewertung möglich", c: "s-none" };
+  if (up >= 0.2) return { t: "Deutlich unterbewertet", c: "s-good" };
+  if (up >= 0.07) return { t: "Leicht unterbewertet", c: "s-good" };
+  if (up > -0.07) return { t: "Fair bewertet", c: "s-warn" };
+  if (up > -0.2) return { t: "Leicht überbewertet", c: "s-bad" };
+  return { t: "Deutlich überbewertet", c: "s-bad" };
+}
+function qualityLabel(q) {
+  if (q == null) return "keine Daten";
+  if (q >= 75) return "Hohe Qualität";
+  if (q >= 55) return "Solide";
+  if (q >= 40) return "Durchwachsen";
+  return "Schwach";
+}
+
+/* ======================================================================
+   Zustand & Speicher (nur Komfort, die App funktioniert auch ohne)
+   ====================================================================== */
+const store = {
+  get(k, def) { try { const v = localStorage.getItem("wk2:" + k); return v ? JSON.parse(v) : def; } catch { return def; } },
+  set(k, v) { try { localStorage.setItem("wk2:" + k, JSON.stringify(v)); } catch {} },
+};
+let DATA = null;
+const DETAILS = {};            // Shard-Nummer -> Promise<Map>
+const DEFAULT_FILTERS = { regions: null, sectors: null, minQ: 0, minY: 0, onlyUnder: false, onlyDiv: false, q: "", preset: "alle" };
+let F = Object.assign({}, DEFAULT_FILTERS, store.get("filters", {}));
+let SORT = store.get("sort", { key: "total", dir: -1 });
+let SHOW = 50;
+const PRESETS = {
+  alle: { label: "Alle Aktien", desc: "Sortiert nach Gesamtnote", set: { minQ: 0, minY: 0, onlyUnder: false, onlyDiv: false }, sort: { key: "total", dir: -1 } },
+  qualitaet: { label: "Qualität zum fairen Preis", desc: "Qualität ab 70, unter fairem Wert", set: { minQ: 70, minY: 0, onlyUnder: true, onlyDiv: false }, sort: { key: "upside", dir: -1 } },
+  dividende: { label: "Dividendenperlen", desc: "Qualität ab 55, Rendite ab 2 %", set: { minQ: 55, minY: 2, onlyUnder: false, onlyDiv: true }, sort: { key: "dividend", dir: -1 } },
+  schnaeppchen: { label: "Günstige Dividendenzahler", desc: "Rendite ab 1,5 %, unter fairem Wert", set: { minQ: 50, minY: 1.5, onlyUnder: true, onlyDiv: true }, sort: { key: "upside", dir: -1 } },
+  wachstum: { label: "Dividendenwachstum", desc: "10+ Jahre Erhöhungen in Folge", set: { minQ: 50, minY: 0, onlyUnder: false, onlyDiv: true, minStreak: 10 }, sort: { key: "streak", dir: -1 } },
+};
+const scoreColor = (v) => (v == null ? "var(--line-strong)" : v >= 70 ? "var(--good)" : v >= 45 ? "var(--warn)" : "var(--bad)");
+const SECTOR_HUE = { "Technologie": 215, "Gesundheit": 170, "Basiskonsumgüter": 35, "Zyklischer Konsum": 15, "Industrie": 200, "Finanzen": 145,
+  "Kommunikation": 265, "Grundstoffe": 50, "Energie": 5, "Versorger": 95, "Immobilien": 325 };
+function initials(name) {
+  const w = String(name).replace(/[^\p{L}\p{N} ]/gu, " ").split(/\s+/).filter((x) => x && !/^(the|inc|ag|se|sa|plc|nv|ltd|corp|corporation|group|holding|holdings|co|company)$/i.test(x));
+  return ((w[0] || "?")[0] + (w[1] ? w[1][0] : (w[0] || "")[1] || "")).toUpperCase();
+}
+const mono = (s, lg) => `<span class="mono${lg ? " lg" : ""}" style="--h:${SECTOR_HUE[s.sector] ?? 180}" aria-hidden="true">${esc(initials(s.name))}</span>`;
+function ring(v, size = 38, stroke = 3) {
+  const r = (size - stroke) / 2, c = 2 * Math.PI * r, p = v == null ? 0 : Math.max(0, Math.min(100, v)) / 100;
+  return `<span class="ring" style="width:${size}px;height:${size}px"><svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" aria-hidden="true">
+    <circle cx="${size / 2}" cy="${size / 2}" r="${r}" fill="none" stroke="var(--surface-2)" stroke-width="${stroke}"/>
+    <circle cx="${size / 2}" cy="${size / 2}" r="${r}" fill="none" stroke="${scoreColor(v)}" stroke-width="${stroke}" stroke-linecap="round" stroke-dasharray="${(c * p).toFixed(2)} ${c.toFixed(2)}"/>
+  </svg><span>${v ?? "–"}</span></span>`;
+}
+const bar = (v) => `<span class="bar"><i><b style="width:${v ?? 0}%;background:${scoreColor(v)}"></b></i><span>${v ?? "–"}</span></span>`;
+function diverge(up) {
+  if (up == null) return `<span class="muted">–</span>`;
+  const x = Math.max(-0.5, Math.min(0.5, up)), w = Math.abs(x) * 50;
+  const style = x >= 0 ? `left:50%;width:${w}%;background:var(--good)` : `right:50%;width:${w}%;background:var(--bad)`;
+  return `<span class="dv"><span class="track"><b style="${style}"></b></span><span class="num ${up > 0.05 ? "up" : up < -0.05 ? "down" : ""}">${spct(up)}</span></span>`;
+}
+
+/* ======================================================================
+   Detaildaten (nachgeladen je Aktie)
+   ====================================================================== */
+function loadDetail(row) {
+  if (!DETAILS[row.shard]) {
+    DETAILS[row.shard] = fetch(`data/details/${row.shard}.json`).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then((arr) => new Map(arr.map((x) => [x.symbol, x])))
+      .catch((e) => { delete DETAILS[row.shard]; throw e; });
+  }
+  return DETAILS[row.shard].then((m) => m.get(row.symbol));
+}
+
+/* ======================================================================
+   Routing über den Adress-Hash
+   ====================================================================== */
+const encSym = (s) => "a-" + s.replace(/-/g, "-h").replace(/\./g, "-p").replace(/&/g, "-a");
+const decSym = (h) => h.slice(2).replace(/-(h|p|a)/g, (_, c) => ({ h: "-", p: ".", a: "&" }[c]));
+let charts = [];
+let routeToken = 0;
+function route() {
+  const h = location.hash.replace(/^#/, "") || "screener";
+  const token = ++routeToken;
+  charts.forEach((c) => c.destroy()); charts = [];
+  hidePop();
+  document.querySelectorAll("[data-nav]").forEach((a) => {
+    const active = a.dataset.nav === h || (h.startsWith("a-") && a.dataset.nav === "screener");
+    if (active) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+  });
+  if (!DATA) return;
+  const v = document.getElementById("view");
+  if (h.startsWith("a-")) {
+    const row = DATA.stocks.find((x) => x.symbol === decSym(h));
+    if (!row) { v.innerHTML = `<p class="empty">Diese Aktie ist nicht in der Datenbank.</p>`; return; }
+    v.innerHTML = `<div class="loading">${esc(row.name)} wird geladen …</div>`;
+    window.scrollTo(0, 0);
+    loadDetail(row).then((s) => {
+      if (token !== routeToken) return;
+      if (!s) { v.innerHTML = `<p class="empty">Für diese Aktie liegen keine Details vor.</p>`; return; }
+      v.innerHTML = renderDetail(s); bindDetail(); drawCharts(s);
+    }).catch(() => { if (token === routeToken) v.innerHTML = `<p class="empty">Die Details konnten nicht geladen werden. Lade die Seite neu.</p>`; });
+  } else if (h === "lexikon") { v.innerHTML = renderGlossary(); }
+  else if (h === "methode") { v.innerHTML = renderMethod(); window.scrollTo(0, 0); }
+  else { v.innerHTML = renderScreenerShell(); bindScreener(); renderTable(); }
+}
+window.addEventListener("hashchange", route);
+
+/* ======================================================================
+   Screener
+   ====================================================================== */
+const REGION_ORDER = ["DACH", "Europa", "Nordamerika", "Asien-Pazifik", "Schwellenländer", "Sonstige"];
+function countBy(key) { const m = {}; DATA.stocks.forEach((s) => { m[s[key]] = (m[s[key]] || 0) + 1; }); return m; }
+
+function pulse() {
+  const S = DATA.stocks;
+  const qv = S.filter((s) => (s.scores.quality ?? 0) >= 70 && (s.valuation.upside ?? -1) > 0.1).length;
+  const hq = S.filter((s) => (s.scores.quality ?? 0) >= 70 && s.valuation.upside != null).map((s) => s.valuation.upside).sort((a, b) => a - b);
+  const med = hq.length ? hq[Math.floor(hq.length / 2)] : null;
+  const perlen = S.filter((s) => s.dividend.pays && (s.scores.quality ?? 0) >= 60).map((s) => s.dividend.yield).sort((a, b) => a - b);
+  const pm = perlen.length ? perlen[Math.floor(perlen.length / 2)] : null;
+  const ari = S.filter((s) => (s.dividend.yearsGrowth ?? 0) >= 25).length;
+  return `<section class="pulse" aria-label="Marktlage">
+    <div><span class="v num">${qv}</span><span class="l">Qualitätsaktien mehr als 10 % unter fairem Wert</span></div>
+    <div><span class="v num ${med > 0 ? "up" : med < 0 ? "down" : ""}">${spct(med, 1)}</span><span class="l">Median-Potenzial aller Qualitätsaktien</span></div>
+    <div><span class="v num">${pct(pm, 1)}</span><span class="l">Mittlere Dividendenrendite solider Zahler</span></div>
+    <div><span class="v num">${ari}</span><span class="l">Unternehmen mit 25+ Jahren Dividendenerhöhung</span></div>
+  </section>`;
+}
+
+function renderScreenerShell() {
+  const rc = countBy("region"), sc = countBy("sector");
+  const regions = REGION_ORDER.filter((r) => rc[r]);
+  const sectors = Object.keys(sc).sort((a, b) => a.localeCompare(b, "de"));
+  const rSel = F.regions || regions, sSel = F.sectors || sectors;
+  const ck = (attr, val, on, n) => `<label class="check"><input type="checkbox" ${attr}="${esc(val)}" ${on ? "checked" : ""}><span>${esc(val)}</span><span class="c">${n}</span></label>`;
+  const p = PRESETS[F.preset];
+  return `
+  <section class="lead">
+    <div>
+      <span class="eyebrow">Weltweiter Aktien-Screener · ${nf(0).format(DATA.count)} Unternehmen</span>
+      <h1>Qualität zum <em>fairen Preis</em>.</h1>
+      <p>Wertkompass prüft jedes Unternehmen auf Qualität, Dividende, Wachstum und Bewertung und erklärt in einfacher Sprache, warum eine Aktie gerade günstig oder teuer ist.</p>
+    </div>
+    <div class="searchbox">
+      <label class="eyebrow" for="q">Aktie suchen</label>
+      <div class="sfield">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="Name, Kürzel, Land oder Branche" value="${esc(F.q)}" role="combobox" aria-expanded="false" aria-controls="suggest" aria-autocomplete="list">
+        <kbd>/</kbd>
+      </div>
+      <div class="suggest" id="suggest" role="listbox" hidden></div>
+    </div>
+  </section>
+  ${pulse()}
+  <nav class="lists" aria-label="Kuratierte Listen">
+    ${Object.entries(PRESETS).map(([k, x]) => `<button data-preset="${k}" aria-pressed="${F.preset === k}">${x.label}</button>`).join("")}
+    <span class="desc">${p ? esc(p.desc) : "Eigene Filter"}</span>
+  </nav>
+  <div class="board">
+    <aside class="side-f" id="sidef" aria-label="Filter">
+      <div class="fgroup"><div class="fhead"><span class="eyebrow">Region</span><button data-all="regions">alle</button></div>
+        <div class="checks">${regions.map((r) => ck("data-region", r, rSel.includes(r), rc[r])).join("")}</div></div>
+      <div class="fgroup"><div class="fhead"><span class="eyebrow">Branche</span><span><button data-all="sectors">alle</button> · <button data-none="sectors">keine</button></span></div>
+        <div class="checks">${sectors.map((r) => ck("data-sector", r, sSel.includes(r), sc[r])).join("")}</div></div>
+      <div class="fgroup"><span class="eyebrow">Schwellen</span>
+        <div class="range"><label class="rl" for="f-minq"><span>Mindest-Qualität</span><b id="f-minq-v"></b></label><input type="range" id="f-minq" min="0" max="90" step="5" value="${F.minQ}"></div>
+        <div class="range"><label class="rl" for="f-miny"><span>Mindest-Dividendenrendite</span><b id="f-miny-v"></b></label><input type="range" id="f-miny" min="0" max="6" step="0.5" value="${F.minY}"></div>
+      </div>
+      <div class="fgroup">
+        <label class="switch" for="f-under"><span>Nur unterbewertete</span><input type="checkbox" id="f-under" ${F.onlyUnder ? "checked" : ""}></label>
+        <label class="switch" for="f-div"><span>Nur Dividendenzahler</span><input type="checkbox" id="f-div" ${F.onlyDiv ? "checked" : ""}></label>
+      </div>
+      <button class="reset" id="f-reset">Filter zurücksetzen</button>
+    </aside>
+    <section>
+      <div class="rbar">
+        <span class="count" id="count"></span>
+        <span style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+          <button class="ftoggle" id="ftoggle" aria-controls="sidef" aria-expanded="false">Filter</button>
+          <label class="sortsel" for="sortsel">Sortieren nach
+            <select id="sortsel">${COLS.filter((c) => c.sortable !== false).map((c) => `<option value="${c.key}" ${c.key === SORT.key ? "selected" : ""}>${c.long || c.label}</option>`).join("")}<option value="streak" ${SORT.key === "streak" ? "selected" : ""}>Jahre Dividendenerhöhung</option></select>
+          </label>
+        </span>
+      </div>
+      <div class="tablebox"><table class="screen"><thead><tr id="thead"></tr></thead><tbody id="tbody"></tbody></table></div>
+      <div class="more" id="more"></div>
+      <p class="hint">Dein Wunschwert fehlt? Kleinere Unternehmen unter 10 Mrd. € Börsenwert lassen sich über die Wunschliste ergänzen (siehe Methodik).</p>
+    </section>
+  </div>`;
+}
+
+const COLS = [
+  { key: "rank", label: "#", sortable: false },
+  { key: "name", label: "Unternehmen", long: "Name", val: (s) => s.name.toLowerCase() },
+  { key: "total", label: "Gesamt", long: "Gesamtnote", val: (s) => s.scores.total },
+  { key: "quality", label: "Qualität", val: (s) => s.scores.quality },
+  { key: "dividend", label: "Dividende", long: "Dividendennote", val: (s) => (s.dividend.pays ? s.scores.dividend : null) },
+  { key: "growth", label: "Wachstum", val: (s) => s.scores.growth },
+  { key: "upside", label: "Potenzial", long: "Potenzial bis fairer Wert", val: (s) => s.valuation.upside },
+  { key: "yield", label: "Rendite", long: "Dividendenrendite", val: (s) => (s.dividend.pays ? s.dividend.yield : null) },
+  { key: "pe", label: "KGV / Ø", long: "KGV im Verhältnis zum Ø", val: (s) => (s.valuation.pe && s.valuation.avgPe ? s.valuation.pe / s.valuation.avgPe : null) },
+  { key: "mcap", label: "Börsenwert", val: (s) => s.marketCapEUR },
+];
+const EXTRA_SORT = { streak: (s) => s.dividend.yearsGrowth };
+
+function matches(s, q) {
+  if (!q) return true;
+  const hay = (s.name + " " + s.symbol + " " + s.country + " " + s.sector + " " + (s.industry || "")).toLowerCase();
+  return q.split(/\s+/).every((w) => hay.includes(w));
+}
+function filtered() {
+  const q = F.q.trim().toLowerCase();
+  const p = PRESETS[F.preset];
+  const minStreak = p && p.set.minStreak ? p.set.minStreak : 0;
+  return DATA.stocks.filter((s) =>
+    (!F.regions || F.regions.includes(s.region)) &&
+    (!F.sectors || F.sectors.includes(s.sector)) &&
+    (s.scores.quality ?? 0) >= F.minQ &&
+    (F.minY === 0 || (s.dividend.yield ?? 0) * 100 >= F.minY) &&
+    (!F.onlyUnder || (s.valuation.upside ?? -1) > 0.05) &&
+    (!F.onlyDiv || s.dividend.pays) &&
+    (s.dividend.yearsGrowth ?? 0) >= minStreak &&
+    matches(s, q)
+  );
+}
+
+function sortRows(rows) {
+  const col = COLS.find((c) => c.key === SORT.key);
+  const val = col ? col.val : EXTRA_SORT[SORT.key] || COLS[2].val;
+  return rows.sort((a, b) => {
+    const x = val(a), y = val(b);
+    if (x == null && y == null) return 0; if (x == null) return 1; if (y == null) return -1;
+    return (x > y ? 1 : x < y ? -1 : 0) * SORT.dir;
+  });
+}
+
+function renderTable() {
+  const rows = sortRows(filtered());
+  document.getElementById("thead").innerHTML = COLS.map((c) => {
+    const s = c.key === SORT.key;
+    if (c.sortable === false) return `<th scope="col">${c.label}</th>`;
+    return `<th scope="col" data-sort="${c.key}" ${s ? `aria-sort="${SORT.dir > 0 ? "ascending" : "descending"}"` : ""} tabindex="0">${c.label}${s ? (SORT.dir > 0 ? " ↑" : " ↓") : ""}</th>`;
+  }).join("");
+  document.getElementById("count").innerHTML = `<b>${nf(0).format(rows.length)}</b> von ${nf(0).format(DATA.stocks.length)} Unternehmen`;
+  const tb = document.getElementById("tbody");
+  const more = document.getElementById("more");
+  if (!rows.length) {
+    tb.innerHTML = `<tr><td colspan="${COLS.length}" class="empty">Keine Aktie erfüllt alle Filter. Lockere z. B. die Mindest-Qualität oder wähle mehr Regionen.</td></tr>`;
+    more.innerHTML = ""; return;
+  }
+  tb.innerHTML = rows.slice(0, SHOW).map((s, i) => {
+    const v = s.valuation;
+    const peRel = v.pe && v.avgPe ? v.pe / v.avgPe : null;
+    return `<tr data-sym="${esc(s.symbol)}" tabindex="0">
+      <td class="rk">${i + 1}</td>
+      <td><div class="co">${mono(s)}<div><span class="n">${esc(s.name)}</span><span class="m">${esc(s.symbol)} · ${esc(s.country)} · ${esc(s.sector)}</span></div></div></td>
+      <td>${ring(s.scores.total)}</td>
+      <td>${bar(s.scores.quality)}</td>
+      <td>${s.dividend.pays ? bar(s.scores.dividend) : `<span class="muted">–</span>`}</td>
+      <td>${bar(s.scores.growth)}</td>
+      <td>${diverge(v.upside)}</td>
+      <td class="num">${s.dividend.pays ? pct(s.dividend.yield) : "–"}</td>
+      <td class="num">${fmt(v.pe, 1)} <span class="muted">/ ${fmt(v.avgPe, 1)}</span>${peRel ? ` <span class="${peRel < 0.9 ? "up" : peRel > 1.1 ? "down" : "muted"}">${peRel < 0.9 ? "↓" : peRel > 1.1 ? "↑" : "≈"}</span>` : ""}</td>
+      <td class="num">${bigEUR(s.marketCapEUR)}</td></tr>`;
+  }).join("");
+  more.innerHTML = rows.length > SHOW ? `<button id="more-btn">Weitere ${Math.min(50, rows.length - SHOW)} anzeigen</button>` : "";
+  const mb = document.getElementById("more-btn");
+  if (mb) mb.addEventListener("click", () => { SHOW += 50; renderTable(); });
+}
+
+function suggestions(q) {
+  q = q.trim().toLowerCase();
+  if (!q) return [];
+  const scored = [];
+  for (const s of DATA.stocks) {
+    const n = s.name.toLowerCase(), sym = s.symbol.toLowerCase();
+    let sc = 0;
+    if (sym === q || sym.split(".")[0] === q) sc = 100;
+    else if (n.startsWith(q)) sc = 80;
+    else if (n.split(/\s+/).some((w) => w.startsWith(q))) sc = 60;
+    else if (sym.startsWith(q)) sc = 55;
+    else if (matches(s, q)) sc = 30;
+    if (sc) scored.push([sc + (s.marketCapEUR || 0) / 1e13, s]);
+  }
+  return scored.sort((a, b) => b[0] - a[0]).slice(0, 8).map((x) => x[1]);
+}
+
+function saveF() { store.set("filters", F); }
+function bindScreener() {
+  const rc = countBy("region"), regionsAll = REGION_ORDER.filter((r) => rc[r]);
+  const sectorsAll = Object.keys(countBy("sector"));
+  const upd = (resetShow = true) => {
+    if (resetShow) SHOW = 50;
+    document.getElementById("f-minq-v").textContent = F.minQ ? `ab ${F.minQ}` : "egal";
+    document.getElementById("f-miny-v").textContent = F.minY ? `ab ${fmt(F.minY, 1)} %` : "egal";
+    saveF(); renderTable();
+  };
+  const custom = () => {
+    F.preset = "eigene";
+    document.querySelectorAll("[data-preset]").forEach((b) => b.setAttribute("aria-pressed", "false"));
+    const d = document.querySelector(".lists .desc"); if (d) d.textContent = "Eigene Filter";
+  };
+  document.querySelectorAll("[data-preset]").forEach((b) => b.addEventListener("click", () => {
+    const p = PRESETS[b.dataset.preset];
+    Object.assign(F, p.set, { preset: b.dataset.preset }); SORT = { ...p.sort }; store.set("sort", SORT); SHOW = 50;
+    saveF(); route();
+  }));
+  const toggleIn = (listKey, all, val, on) => {
+    let cur = F[listKey] ? [...F[listKey]] : [...all];
+    cur = on ? [...new Set([...cur, val])] : cur.filter((x) => x !== val);
+    F[listKey] = cur.length === all.length ? null : cur;
+  };
+  document.querySelectorAll("[data-region]").forEach((b) => b.addEventListener("change", () => { toggleIn("regions", regionsAll, b.dataset.region, b.checked); upd(); }));
+  document.querySelectorAll("[data-sector]").forEach((b) => b.addEventListener("change", () => { toggleIn("sectors", sectorsAll, b.dataset.sector, b.checked); upd(); }));
+  document.querySelectorAll("[data-all]").forEach((b) => b.addEventListener("click", () => {
+    F[b.dataset.all] = null; document.querySelectorAll(b.dataset.all === "regions" ? "[data-region]" : "[data-sector]").forEach((c) => (c.checked = true)); upd();
+  }));
+  document.querySelectorAll("[data-none]").forEach((b) => b.addEventListener("click", () => {
+    F.sectors = []; document.querySelectorAll("[data-sector]").forEach((c) => (c.checked = false)); upd();
+  }));
+  document.getElementById("f-minq").addEventListener("input", (e) => { F.minQ = +e.target.value; custom(); upd(); });
+  document.getElementById("f-miny").addEventListener("input", (e) => { F.minY = +e.target.value; custom(); upd(); });
+  document.getElementById("f-under").addEventListener("change", (e) => { F.onlyUnder = e.target.checked; custom(); upd(); });
+  document.getElementById("f-div").addEventListener("change", (e) => { F.onlyDiv = e.target.checked; custom(); upd(); });
+  document.getElementById("f-reset").addEventListener("click", () => { F = Object.assign({}, DEFAULT_FILTERS); SORT = { key: "total", dir: -1 }; store.set("sort", SORT); saveF(); route(); });
+  const ft = document.getElementById("ftoggle");
+  ft.addEventListener("click", () => { const sf = document.getElementById("sidef"); const o = sf.classList.toggle("open"); ft.setAttribute("aria-expanded", String(o)); });
+  document.getElementById("sortsel").addEventListener("change", (e) => { const k = e.target.value; SORT = { key: k, dir: k === "name" ? 1 : -1 }; store.set("sort", SORT); upd(); });
+  const thead = document.getElementById("thead");
+  const sortBy = (k) => { if (!k) return; SORT = { key: k, dir: SORT.key === k ? -SORT.dir : k === "name" ? 1 : -1 }; store.set("sort", SORT); document.getElementById("sortsel").value = k; renderTable(); };
+  thead.addEventListener("click", (e) => { const th = e.target.closest("th"); if (th) sortBy(th.dataset.sort); });
+  thead.addEventListener("keydown", (e) => { const th = e.target.closest("th"); if (th && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); sortBy(th.dataset.sort); } });
+  const tb = document.getElementById("tbody");
+  const open = (tr) => { if (tr && tr.dataset.sym) location.hash = encSym(tr.dataset.sym); };
+  tb.addEventListener("click", (e) => open(e.target.closest("tr")));
+  tb.addEventListener("keydown", (e) => { if (e.key === "Enter") open(e.target.closest("tr")); });
+
+  // Suche mit Vorschlägen
+  const qi = document.getElementById("q"), sg = document.getElementById("suggest");
+  let sel = -1, list = [];
+  const close = () => { sg.hidden = true; qi.setAttribute("aria-expanded", "false"); sel = -1; };
+  const paint = () => {
+    if (!qi.value.trim()) { close(); return; }
+    list = suggestions(qi.value);
+    sg.innerHTML = list.length ? list.map((s, i) => `<div class="sopt" role="option" id="opt-${i}" data-sym="${esc(s.symbol)}" aria-selected="${i === sel}">
+        ${mono(s)}<div style="min-width:0"><div class="n">${esc(s.name)}</div><div class="m">${esc(s.symbol)} · ${esc(s.country)} · ${esc(s.sector)}</div></div>${ring(s.scores.total, 32, 2.5)}</div>`).join("")
+      : `<div class="snone">Kein Treffer in den ${nf(0).format(DATA.count)} Unternehmen. Kleinere Werte kannst du über die Wunschliste ergänzen.</div>`;
+    sg.hidden = false; qi.setAttribute("aria-expanded", "true");
+    if (sel >= 0) qi.setAttribute("aria-activedescendant", "opt-" + sel); else qi.removeAttribute("aria-activedescendant");
+  };
+  qi.addEventListener("input", () => { F.q = qi.value; sel = -1; paint(); upd(); });
+  qi.addEventListener("focus", paint);
+  qi.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown") { e.preventDefault(); sel = Math.min(list.length - 1, sel + 1); paint(); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); sel = Math.max(-1, sel - 1); paint(); }
+    else if (e.key === "Enter") { const s = list[sel >= 0 ? sel : 0]; if (s && !sg.hidden) { e.preventDefault(); location.hash = encSym(s.symbol); } }
+    else if (e.key === "Escape") close();
+  });
+  sg.addEventListener("mousedown", (e) => { const o = e.target.closest(".sopt"); if (o) { e.preventDefault(); location.hash = encSym(o.dataset.sym); } });
+  qi.addEventListener("blur", () => setTimeout(close, 120));
+  upd(false);
+}
+document.addEventListener("keydown", (e) => {
+  if (e.key === "/" && !e.target.closest("input, textarea, select")) { const q = document.getElementById("q"); if (q) { e.preventDefault(); q.focus(); } }
+});
+
+function state(v, good, bad, higherIsBetter = true) {
+  if (v == null) return "none";
+  if (higherIsBetter) return v >= good ? "good" : v <= bad ? "bad" : "warn";
+  return v <= good ? "good" : v >= bad ? "bad" : "warn";
+}
+
+function valuationText(s) {
+  const v = s.valuation, c = s.currency, out = [];
+  const nYears = v.peYears || s.annual.filter((a) => a.pe).length;
+  if (v.pe && v.avgPe) {
+    const r = v.pe / v.avgPe;
+    out.push(`Die Aktie kostet aktuell das <strong>${fmt(v.pe, 1)}-fache</strong> ihres Gewinns der letzten 12 Monate. Diese Kennzahl heißt ${term("kgv")}. In den letzten ${nYears} Geschäftsjahren lag das KGV im Mittel bei <strong>${fmt(v.avgPe, 1)}</strong> (${term("avgkgv")}).${nYears < 6 ? " Das ist ein kurzer Zeitraum: Für dieses Unternehmen liegen kostenlos nur wenige Jahresabschlüsse vor, der Durchschnitt ist entsprechend weniger belastbar." : ""}`);
+    if (r < 0.85) out.push(`Anleger zahlen also gerade <strong>${pct(1 - r, 0)} weniger</strong> für jeden Euro Gewinn als üblich. Das spricht für eine günstige Bewertung, sofern das Geschäft intakt ist.`);
+    else if (r > 1.15) out.push(`Anleger zahlen also gerade <strong>${pct(r - 1, 0)} mehr</strong> für jeden Euro Gewinn als üblich. Der Markt hat hohe Erwartungen eingepreist.`);
+    else out.push(`Das aktuelle KGV liegt also nahe am eigenen Durchschnitt: Die Aktie ist nach dieser Kennzahl weder auffällig günstig noch teuer.`);
+  } else if (v.pe == null) {
+    out.push(`Das Unternehmen hat in den letzten 12 Monaten keinen positiven Gewinn erzielt oder die Daten fehlen. Deshalb lässt sich kein sinnvolles ${term("kgv")} berechnen.`);
+  }
+  if (v.peFwd && v.pe) {
+    const g = v.pe / v.peFwd - 1;
+    out.push(`Mit dem von Analysten für die nächsten 12 Monate erwarteten Gewinn (${term("analysten")}) liegt das ${term("fkgv")} bei <strong>${fmt(v.peFwd, 1)}</strong>${Math.abs(g) > 0.05 ? `, weil ${g > 0 ? "steigende" : "sinkende"} Gewinne erwartet werden` : ""}.`);
+    if (v.pe / v.peFwd > 1.6) out.push(`Der große Unterschied zwischen beiden Werten deutet auf Sondereffekte im letzten Jahr hin (z. B. hohe Abschreibungen). Analysten rechnen meist mit „bereinigten“ Gewinnen ohne solche Einmaleffekte.`);
+  }
+  if (v.pcf && v.avgPcf && !s.isFinancial) {
+    const r = v.pcf / v.avgPcf;
+    out.push(`Beim ${term("kcv")} (Kurs im Verhältnis zum ${term("ocf")}) zeigt sich ${r < 0.9 ? "ebenfalls ein Abschlag" : r > 1.1 ? "ein Aufschlag" : "ein ähnliches Bild"}: aktuell ${fmt(v.pcf, 1)} gegenüber ${fmt(v.avgPcf, 1)} im Mittel.`);
+  }
+  if (v.dropped) out.push(`${v.dropped === 1 ? "Eine Bewertungsmethode wurde" : v.dropped + " Bewertungsmethoden wurden"} verworfen, weil sie mehr als das 4-fache oder weniger als ein Viertel des Kurses ergab. Das deutet fast immer auf einen Datenfehler oder einen Sondereffekt hin.`);
+  if (v.fairValue) {
+    const vd = verdict(v.upside);
+    out.push(`Zusammengerechnet ergibt sich ein ${term("fairerwert")} von <strong>${money(v.fairValue, c)}</strong>. Der Kurs von ${money(s.price, c)} liegt damit ${v.upside >= 0 ? `<strong>${pct(1 - s.price / v.fairValue, 0)} unter</strong>` : `<strong>${pct(s.price / v.fairValue - 1, 0)} über</strong>`} dem fairen Wert. Einstufung: <strong>${vd.t.toLowerCase()}</strong>.${v.upside > 0.1 ? ` Dieser Abstand ist deine ${term("sicherheitsmarge")}.` : ""}${v.upside > 0.5 ? ` Ein so großer Abschlag ist aber auch ein Warnsignal: Prüfe, ob es sich um eine ${term("valuefalle")} handelt.` : ""}`);
+  }
+  return out;
+}
+
+function methodText(m, s) {
+  const c = s.currency;
+  if (m.key === "pe") {
+    const basis = { forecast: `Erwarteter ${term("eps")} der nächsten 12 Monate (${term("analysten")})`,
+      ttm: `${term("eps")} der letzten 12 Monate`,
+      normalized: `Typischer ${term("eps")} (Mittel der letzten Jahre, weil der aktuelle Gewinn durch Sondereffekte verzerrt ist)` }[m.basisKind] || term("eps");
+    return {
+      calc: `${money(m.basis, c)} × ${fmt(m.multiple, 1)} = ${money(m.value, c)}`,
+      txt: `${basis} × ${term("avgkgv")}. Die Frage dahinter: Was würde die Aktie kosten, wenn der Markt diesen Gewinn so bewertet wie im Schnitt der Vorjahre?${m.capped ? ` Das historische KGV lag sogar bei ${fmt(m.multipleRaw, 1)}. Wir setzen aber höchstens 30 an, damit frühere Übertreibungen nicht fortgeschrieben werden.` : ""}` };
+  }
+  if (m.key === "pcf") return {
+    calc: `${money(m.basis, c)} × ${fmt(m.multiple, 1)} = ${money(m.value, c)}`,
+    txt: `${term("ocf")} je Aktie × durchschnittliches ${term("kcv")}. Gleiche Idee wie beim KGV, aber mit dem echten Geldzufluss statt dem Buchgewinn.${m.capped ? ` Historisch lag das KCV bei ${fmt(m.multipleRaw, 1)}, wir setzen höchstens 25 an.` : ""}` };
+  return {
+    calc: `${money(m.basis, c)} ÷ ${pct(m.avgYield, 2)} = ${money(m.value, c)}`,
+    txt: `Dividende der letzten 12 Monate ÷ ${term("avgrendite")} der letzten 5 Jahre. Bei welchem Kurs hätte die Aktie ihre übliche Dividendenrendite?` };
+}
+
+function qualityRows(s) {
+  const q = s.quality, fin = s.isFinancial;
+  const rows = [
+    { k: term("roe"), v: pct(q.roe), st: state(q.roe, 0.15, 0.07) },
+    !fin && { k: term("marge"), v: pct(q.opMargin), st: state(q.opMargin, 0.18, 0.07) },
+    !fin && { k: term("fcfmarge"), v: pct(q.fcfMargin), st: state(q.fcfMargin, 0.1, 0.03) },
+    !fin && { k: term("verschuldung"), v: q.netDebtEbitda == null ? "–" : q.netDebtEbitda < 0 ? "Nettocash" : fmt(q.netDebtEbitda, 1) + "×", st: q.netDebtEbitda == null ? "none" : state(q.netDebtEbitda, 1.5, 3.5, false) },
+    { k: term("ekquote"), v: pct(q.equityRatio, 0), st: fin ? "none" : state(q.equityRatio, 0.35, 0.15) },
+    { k: term("stabilitaet", "Gewinnstabilität (R²)"), v: fmt(q.epsStability, 2), st: state(q.epsStability, 0.75, 0.3) },
+    { k: "Jahre mit Umsatzplus", v: q.revUpShare == null ? "–" : pct(q.revUpShare, 0), st: state(q.revUpShare, 0.75, 0.4) },
+  ].filter(Boolean);
+  return rows;
+}
+
+function qualityText(s) {
+  const q = s.quality, out = [];
+  const lbl = qualityLabel(s.scores.quality);
+  out.push(`Mit <strong>${s.scores.quality ?? "–"} von 100 Punkten</strong> ist das Ergebnis: <strong>${lbl.toLowerCase()}</strong>. Eine Qualitätsaktie verdient viel Geld im Verhältnis zum eingesetzten Kapital, wächst gleichmäßig und ist nicht zu hoch verschuldet.`);
+  if (q.roe != null) out.push(`Die ${term("roe")} beträgt <strong>${pct(q.roe)}</strong>. ${q.roe >= 0.15 ? "Das ist stark: Das Unternehmen erwirtschaftet viel Gewinn aus dem Geld seiner Eigentümer, oft ein Zeichen für einen Wettbewerbsvorteil." : q.roe >= 0.08 ? "Das ist ordentlich, aber nicht herausragend." : "Das ist schwach: Aus dem Eigenkapital wird wenig Gewinn gemacht."}`);
+  if (!s.isFinancial && q.opMargin != null) out.push(`Von jedem Euro ${term("umsatz")} bleiben <strong>${fmt(q.opMargin * 100, 0)} Cent</strong> als operativer Gewinn (${term("marge")}).${q.fcfMargin != null ? ` Als frei verfügbares Geld (${term("fcf")}) bleiben ${fmt(q.fcfMargin * 100, 0)} Cent.` : ""}`);
+  if (q.epsStability != null) out.push(`Die ${term("stabilitaet")} liegt bei <strong>${fmt(q.epsStability, 2)}</strong>. ${q.epsStability >= 0.75 ? "Der Gewinn je Aktie ist sehr gleichmäßig gestiegen, ein berechenbares Geschäft." : q.epsStability >= 0.4 ? "Der Gewinn ist zwar gestiegen, aber mit spürbaren Schwankungen." : "Der Gewinn schwankt stark oder ist nicht gestiegen. Das macht den fairen Wert unsicherer."}${q.negEpsYears ? ` In ${q.negEpsYears} Jahr(en) gab es sogar einen Verlust.` : ""}`);
+  if (!s.isFinancial && q.netDebtEbitda != null) out.push(q.netDebtEbitda < 0 ? `Das Unternehmen hat mehr Geld in der Kasse als Schulden (Nettocash). Das gibt Sicherheit in Krisen.` : `Die ${term("verschuldung")} liegt beim <strong>${fmt(q.netDebtEbitda, 1)}-fachen</strong> des ${term("ebitda")}. ${q.netDebtEbitda <= 1.5 ? "Das ist solide." : q.netDebtEbitda <= 3 ? "Das ist vertretbar." : "Das ist recht hoch und ein Risiko, vor allem bei steigenden Zinsen."}`);
+  if (s.cyclical) out.push(`Hinweis: ${esc(s.sector)} ist eine konjunktur- und rohstoffabhängige Branche (${term("zyklisch")}). Wenige gute Jahre lassen die Gewinne stabiler aussehen, als sie über einen ganzen Zyklus sind. Deshalb ziehen wir 15 % von der Qualitätsnote ab (ohne Abschlag wären es ${s.scores.qualityRaw} Punkte).`);
+  if (s.isFinancial) out.push(`Hinweis: Bei Banken und Versicherungen sind Marge, Cashflow und Verschuldung anders aufgebaut als bei Industriefirmen. Sie fließen deshalb nicht in die Bewertung ein.`);
+  return out;
+}
+
+function dividendRows(s) {
+  const d = s.dividend;
+  return [
+    { k: term("divrendite"), v: pct(d.yield, 2), st: d.yield > 0.08 ? "warn" : state(d.yield, 0.025, 0.01) },
+    { k: term("avgrendite", "Ø-Rendite (5 J.)"), v: pct(d.avgYield5, 2), st: "none" },
+    { k: term("payout"), v: pct(d.payoutEps, 0), st: s.isReit ? "none" : d.payoutEps == null ? "none" : state(d.payoutEps, 0.65, 0.95, false) },
+    { k: term("payoutfcf"), v: pct(d.payoutFcf, 0), st: s.isFinancial || d.payoutFcf == null ? "none" : state(d.payoutFcf, 0.7, 1.0, false) },
+    { k: term("divwachstum", "Wachstum 5 J. p. a."), v: pct(d.cagr5), st: state(d.cagr5, 0.05, 0.0) },
+    { k: term("divwachstum", "Wachstum 10 J. p. a."), v: pct(d.cagr10), st: state(d.cagr10, 0.05, 0.0) },
+    { k: term("kontinuitaet", "Erhöhungen in Folge"), v: d.yearsGrowth + " J.", st: state(d.yearsGrowth, 10, 2) },
+    { k: "Ohne Kürzung seit", v: d.yearsNoCut + " J.", st: state(d.yearsNoCut, 10, 3) },
+  ];
+}
+
+function dividendText(s) {
+  const d = s.dividend, c = s.currency, out = [];
+  if (!d.pays) return [`${esc(s.name)} zahlt derzeit keine Dividende. Das Unternehmen behält seine Gewinne, um zu wachsen oder eigene Aktien zurückzukaufen.`];
+  out.push(`In den letzten 12 Monaten wurden <strong>${money(d.dps, c)}</strong> je Aktie ausgeschüttet. Beim aktuellen Kurs ist das eine ${term("divrendite")} von <strong>${pct(d.yield, 2)}</strong>: Für 1.000 € Investment bekämst du rund ${fmt(d.yield * 1000, 0)} € im Jahr (vor Steuern).`);
+  if (d.avgYield5) {
+    const r = d.yield / d.avgYield5;
+    out.push(`Im Schnitt der letzten 5 Jahre lag die Rendite bei ${pct(d.avgYield5, 2)}. ${r > 1.1 ? "Die Rendite ist heute <strong>höher als üblich</strong>, die Aktie ist also im Verhältnis zur Dividende gerade günstiger." : r < 0.9 ? "Die Rendite ist heute <strong>niedriger als üblich</strong>, die Aktie ist im Verhältnis zur Dividende eher teuer." : "Die Rendite entspricht etwa dem Durchschnitt."}`);
+  }
+  if (s.isReit) out.push(`Als Immobiliengesellschaft (REIT) muss das Unternehmen den Großteil seiner Erträge ausschütten. Die gewinnbasierte ${term("payout")} liegt deshalb oft über 100 %. Aussagekräftiger ist hier die ${term("payoutfcf")} von ${pct(d.payoutFcf, 0)}.`);
+  else if (d.payoutEps != null) out.push(`Die ${term("payout")} beträgt <strong>${pct(d.payoutEps, 0)}</strong>: Von jedem verdienten Euro werden ${fmt(d.payoutEps * 100, 0)} Cent ausgeschüttet. ${d.payoutEps <= 0.65 ? "Das lässt genug Spielraum für weitere Erhöhungen und schlechte Jahre." : d.payoutEps <= 1 ? "Das ist recht hoch, der Spielraum für Erhöhungen ist begrenzt." : "Das Unternehmen zahlt mehr aus, als es verdient. Das geht nicht dauerhaft gut, außer der Gewinn war nur vorübergehend schwach."}`);
+  if (d.yearsGrowth >= 1) out.push(`Die Dividende wurde <strong>${d.yearsGrowth} Jahre in Folge erhöht</strong> (${term("kontinuitaet")})${d.cagr5 != null ? `, in den letzten 5 Jahren im Schnitt um <strong>${pct(d.cagr5)} pro Jahr</strong> (${term("divwachstum")})` : ""}. ${d.yearsGrowth >= 20 ? "Das ist eine beeindruckende Serie, die auch Krisen überstanden hat." : d.yearsGrowth >= 10 ? "Das spricht für eine verlässliche Dividendenpolitik." : ""}`);
+  else out.push(`Zuletzt wurde die Dividende nicht erhöht${d.yearsNoCut >= 1 ? `, aber seit ${d.yearsNoCut} Jahren auch nicht gekürzt` : ""}.${d.cagr5 != null ? ` Über 5 Jahre ergibt sich ein Wachstum von ${pct(d.cagr5)} pro Jahr.` : ""}`);
+  if (s.currency !== "EUR" && s.currency !== "USD") out.push(`Die Dividende wird in ${c} gezahlt. Wechselkursschwankungen können Erhöhungen in Euro gerechnet verstärken oder aufzehren.`);
+  return out;
+}
+
+function growthText(s) {
+  const g = s.growth, v = s.valuation, out = [];
+  if (g.revCagr != null) out.push(`Der ${term("umsatz")} ist in den letzten ${g.years} Jahren um durchschnittlich <strong>${pct(g.revCagr)} pro Jahr</strong> gewachsen (${term("cagr")}).`);
+  if (g.epsCagr != null) out.push(`Der ${term("eps")} wuchs im gleichen Zeitraum um <strong>${pct(g.epsCagr)} pro Jahr</strong>. ${g.revCagr != null && g.epsCagr > g.revCagr + 0.02 ? "Der Gewinn wächst schneller als der Umsatz: Die Margen steigen oder das Unternehmen kauft eigene Aktien zurück." : ""}`);
+  else out.push(`Ein Gewinnwachstum lässt sich nicht berechnen, weil in einem der Jahre ein Verlust oder kein Wert vorlag.`);
+  if (g.epsGrowthNext != null) out.push(`Analysten erwarten für das kommende Geschäftsjahr ein Gewinnwachstum von <strong>${spct(g.epsGrowthNext, 1)}</strong> (${term("analysten")}).`);
+  if (["Grundstoffe", "Energie", "Zyklischer Konsum"].includes(s.sector)) out.push(`Die Branche ${esc(s.sector)} gilt als konjunkturabhängig (${term("zyklisch")}). Ein niedriges KGV kann hier auch bedeuten, dass der Markt mit fallenden Gewinnen rechnet.`);
+  return out;
+}
+
+function prosCons(s) {
+  const pro = [], con = [], q = s.quality, d = s.dividend, v = s.valuation, g = s.growth;
+  if (v.upside != null) (v.upside > 0.07 ? pro : v.upside < -0.07 ? con : []).push(v.upside > 0 ? `Kurs ${pct(1 - s.price / v.fairValue, 0)} unter dem fairen Wert` : `Kurs ${pct(s.price / v.fairValue - 1, 0)} über dem fairen Wert`);
+  if (q.roe != null) (q.roe >= 0.15 ? pro : q.roe < 0.07 ? con : []).push(`Eigenkapitalrendite ${pct(q.roe, 0)}`);
+  if (!s.isFinancial && q.opMargin != null) (q.opMargin >= 0.2 ? pro : q.opMargin < 0.07 ? con : []).push(`Operative Marge ${pct(q.opMargin, 0)}`);
+  if (q.epsStability != null) (q.epsStability >= 0.75 ? pro : q.epsStability < 0.3 ? con : []).push(q.epsStability >= 0.75 ? "Sehr gleichmäßiges Gewinnwachstum" : "Schwankende oder fallende Gewinne");
+  if (!s.isFinancial && q.netDebtEbitda != null) (q.netDebtEbitda <= 1 ? pro : q.netDebtEbitda > 3.5 ? con : []).push(q.netDebtEbitda < 0 ? "Mehr Cash als Schulden" : `Verschuldung ${fmt(q.netDebtEbitda, 1)}× EBITDA`);
+  if (d.pays) {
+    if (d.yearsGrowth >= 10) pro.push(`Dividende ${d.yearsGrowth} Jahre in Folge erhöht`);
+    if (d.cagr5 != null && d.cagr5 >= 0.07) pro.push(`Dividendenwachstum ${pct(d.cagr5, 0)} p. a.`);
+    if (d.yield >= 0.03 && d.yield <= 0.07) pro.push(`Dividendenrendite ${pct(d.yield, 1)}`);
+    if (d.yield > 0.07) con.push(`Sehr hohe Rendite (${pct(d.yield, 1)}) kann auf Kürzungsgefahr hindeuten`);
+    if (!s.isReit && d.payoutEps != null && d.payoutEps > 0.9) con.push(`Ausschüttungsquote ${pct(d.payoutEps, 0)} lässt wenig Puffer`);
+    if (d.yearsNoCut < 3 && d.history.length > 5) con.push("Dividende wurde in den letzten Jahren gekürzt");
+  } else con.push("Keine Dividende");
+  if (g.epsGrowthNext != null) (g.epsGrowthNext >= 0.08 ? pro : g.epsGrowthNext < 0 ? con : []).push(`Erwartetes Gewinnwachstum ${spct(g.epsGrowthNext, 0)}`);
+  if (g.revCagr != null && g.revCagr < 0) con.push("Umsatz ist geschrumpft");
+  if (v.upside != null && v.upside > 0.5) con.push("Sehr großer Abschlag: Prüfe, warum der Markt so pessimistisch ist (mögliche Value-Falle, z. B. durch ein verändertes Geschäftsmodell)");
+  return { pro, con };
+}
+
+function kv(rows) {
+  return `<div class="kv">${rows.map((r) => `<div><span class="k">${r.k}</span><span class="v">${r.v}</span><span class="dot ${dotc(r.st)}" role="img" aria-label="${{ good: "gut", warn: "mittel", bad: "schwach" }[r.st] || "neutral"}"></span></div>`).join("")}</div>`;
+}
+
+function valPanel(s) {
+  const v = s.valuation, c = s.currency;
+  if (!v.fairValue) return `<section class="valpanel"><div><span class="eyebrow">Fairer Wert</span><p class="fv">nicht berechenbar</p><p class="fvs">Es fehlen verlässliche Gewinn-, Cashflow- oder Dividendendaten.</p></div></section>`;
+  const vals = [s.price, v.fairValue, v.analystTarget].filter(Boolean);
+  const lo = Math.min(...vals, v.fairValue * 0.6), hi = Math.max(...vals, v.fairValue * 1.4);
+  // Skala: links teuer (Kurs über fairem Wert), rechts günstig. Position = Verhältnis Kurs/fairer Wert.
+  const pos = (x) => 100 - ((x - lo) / (hi - lo)) * 100;
+  const pin = (x, label, color, below) => `<span class="pin${below ? " below" : ""}" style="left:${Math.max(4, Math.min(96, pos(x)))}%">${below ? "" : `<span>${label}</span>`}<i style="background:${color}"></i>${below ? `<span>${label}</span>` : ""}</span>`;
+  const vd = verdict(v.upside);
+  return `<section class="valpanel" aria-label="Fairer Wert">
+    <div>
+      <span class="eyebrow">${term("fairerwert")} je Aktie</span>
+      <p class="fv num">${money(v.fairValue, c)}</p>
+      <p class="fvs">Der Kurs liegt ${v.upside >= 0 ? `<strong class="up">${pct(1 - s.price / v.fairValue, 0)} darunter</strong>` : `<strong class="down">${pct(s.price / v.fairValue - 1, 0)} darüber</strong>`}. Bis zum fairen Wert wären es ${spct(v.upside)}.${v.analystTarget ? ` Analysten sehen im Mittel ${money(v.analystTarget, c)}${v.analystCount ? ` (${v.analystCount} Schätzungen)` : ""}.` : ""}</p>
+    </div>
+    <div class="scale" role="img" aria-label="Kurs ${money(s.price, c)}, fairer Wert ${money(v.fairValue, c)}, Einstufung ${vd.t}">
+      ${pin(s.price, "Kurs " + money(s.price, c), "var(--ink)")}
+      ${pin(v.fairValue, "Fair " + money(v.fairValue, c), "var(--brass)", true)}
+      ${v.analystTarget ? `<span class="pin" style="left:${Math.max(4, Math.min(96, pos(v.analystTarget)))}%;top:22px"><i style="background:var(--faint);height:26px;opacity:.6"></i></span>` : ""}
+      <div class="band"></div>
+      <div class="ends" style="margin-top:34px"><span>teurer</span><span>günstiger</span></div>
+    </div>
+  </section>`;
+}
+
+function grade(label, score, text) {
+  return `<div class="grade">${ring(score, 54, 4)}<span class="gl">${label}</span><span class="gt">${text}</span></div>`;
+}
+
+function renderDetail(s) {
+  const v = s.valuation, d = s.dividend, vd = verdict(v.upside), pc = prosCons(s);
+  const P = (arr) => arr.map((t) => `<p>${t}</p>`).join("");
+  const badge = { "s-good": "var(--good-soft);color:var(--good)", "s-warn": "var(--warn-soft);color:var(--warn)", "s-bad": "var(--bad-soft);color:var(--bad)", "s-none": "var(--surface-2);color:var(--muted)" }[vd.c];
+  return `
+  <nav class="crumb" aria-label="Pfad"><a href="#screener">Screener</a><span>/</span><span>${esc(s.name)}</span></nav>
+  <header class="dhero">
+    <div class="idt">${mono(s, true)}<div style="min-width:0"><h1>${esc(s.name)}</h1>
+      <p class="meta">${esc(s.symbol)} · ${esc(s.country)} · ${esc(s.sector)}${s.industry ? " · " + esc(s.industry) : ""} · Börsenwert ${bigEUR(s.marketCapEUR)}</p></div></div>
+    <div class="quote"><span class="eyebrow">Aktueller Kurs</span><span class="px">${money(s.price, s.currency)}</span><span class="badge" style="background:${badge}">${vd.t}</span></div>
+  </header>
+  ${valPanel(s)}
+  <section class="grades" aria-label="Noten">
+    ${grade("Qualität", s.scores.quality, `${qualityLabel(s.scores.quality)}`)}
+    ${grade("Dividende", d.pays ? s.scores.dividend : null, d.pays ? `${pct(d.yield, 2)} Rendite, ${d.yearsGrowth} J. Erhöhungen` : "Keine Dividende")}
+    ${grade("Wachstum", s.scores.growth, s.growth.epsCagr != null ? `Gewinn ${spct(s.growth.epsCagr, 1)} pro Jahr` : "Gewinnwachstum unklar")}
+    ${grade("Bewertung", s.scores.valuation, vd.t)}
+  </section>
+  <nav class="chap-nav" aria-label="Kapitel">
+    <button data-go-chap="k-val">Bewertung</button><button data-go-chap="k-qual">Qualität</button><button data-go-chap="k-div">Dividende</button><button data-go-chap="k-growth">Wachstum</button><button data-go-chap="k-fazit">Fazit</button>
+  </nav>
+
+  <section class="chap" id="k-val">
+    <header><span class="eyebrow">Bewertung</span><h2>Ist die Aktie gerade günstig?</h2></header>
+    <div class="explain">${P(valuationText(s))}
+      ${v.methods.length ? `<div class="methods">${v.methods.map((m) => { const t = methodText(m, s); return `<div class="method"><div class="mh"><span>${m.name}</span><span class="num">${money(m.value, s.currency)}</span></div><p>${t.txt}</p><span class="calc">${t.calc}</span></div>`; }).join("")}</div>
+      <p class="note">Gewichtung: KGV 45 %, KCV 30 %, Dividendenrendite 25 %. Fehlt eine Methode, werden die übrigen anteilig hochgerechnet.</p>` : ""}
+    </div>
+    <div class="side">
+      <div class="panel"><div class="ph"><span class="key"><i style="background:var(--price)"></i>Aktienkurs</span><span class="key"><i style="background:var(--brass)"></i>Gewinn je Aktie × Ø-KGV</span></div><div class="chart"><canvas id="c-price" role="img" aria-label="Kursverlauf und faire Linie"></canvas></div></div>
+      <p class="note">Liegt der Kurs unter der goldenen Linie, war die Aktie im Verhältnis zu ihrem Gewinn günstiger als im eigenen Durchschnitt. Die letzten Punkte der Linie beruhen auf Analystenschätzungen.</p>
+    </div>
+  </section>
+
+  <section class="chap" id="k-qual">
+    <header><span class="eyebrow">Qualität</span><h2>Wie gut und stabil ist das Unternehmen?</h2></header>
+    <div class="explain">${P(qualityText(s))}</div>
+    <div class="side">${kv(qualityRows(s))}</div>
+  </section>
+
+  <section class="chap" id="k-div">
+    <header><span class="eyebrow">Dividende</span><h2>Wie attraktiv und sicher ist die Dividende?</h2></header>
+    <div class="explain">${P(dividendText(s))}</div>
+    <div class="side">${d.pays ? kv(dividendRows(s)) : ""}
+      ${d.history.length ? `<div class="panel"><div class="ph"><span>Dividende je Aktie pro Kalenderjahr in ${esc(s.currency)}</span><span class="key"><i style="background:var(--bad)"></i>Kürzung</span></div><div class="chart sm"><canvas id="c-div" role="img" aria-label="Dividendenhistorie"></canvas></div></div>` : ""}
+    </div>
+  </section>
+
+  <section class="chap" id="k-growth">
+    <header><span class="eyebrow">Wachstum</span><h2>Wächst das Unternehmen?</h2></header>
+    <div class="explain">${P(growthText(s))}</div>
+    <div class="side">${s.annual.length ? `<div class="panel"><div class="ph"><span class="key"><i style="background:var(--line-strong);height:8px"></i>Umsatz (${esc(s.finCurrency)})</span><span class="key"><i style="background:var(--accent)"></i>Gewinn je Aktie (${esc(s.currency)})</span></div><div class="chart sm"><canvas id="c-growth" role="img" aria-label="Umsatz und Gewinn je Aktie"></canvas></div></div>` : ""}</div>
+  </section>
+
+  <section class="chap" id="k-fazit" style="border-bottom:0">
+    <header><span class="eyebrow">Fazit</span><h2>Was spricht dafür, was dagegen?</h2></header>
+    <div class="verdict">
+      <div class="plist"><h3 class="up">Stärken</h3>${pc.pro.length ? `<ul>${pc.pro.map((x) => `<li>${x}</li>`).join("")}</ul>` : "<p class='note'>Keine herausragenden Stärken in den Kennzahlen.</p>"}</div>
+      <div class="plist"><h3 class="down">Schwächen und Risiken</h3>${pc.con.length ? `<ul>${pc.con.map((x) => `<li>${x}</li>`).join("")}</ul>` : "<p class='note'>Keine auffälligen Schwächen in den Kennzahlen.</p>"}</div>
+    </div>
+    ${s.description ? `<p class="about"><b>Was macht das Unternehmen?</b> ${esc(s.description)}${s.description.length >= 600 ? " …" : ""}</p>` : ""}
+    <p class="note" style="grid-column:1/-1">Datenbasis: Jahresabschlüsse ${s.annual.length ? s.annual[0].year + "–" + s.annual[s.annual.length - 1].year : "–"} (${s.secUsed ? "ältere Jahre aus den Pflichtmeldungen an die US-Börsenaufsicht SEC, neuere von Yahoo Finance" : "Yahoo Finance"}; Kennzahlen über höchstens die letzten 10 Jahre), Dividenden seit ${d.history.length ? d.history[0].year : "–"}. Bilanzwerte in ${esc(s.finCurrency)}${s.finCurrency !== s.currency ? `, Kennzahlen je Aktie in ${esc(s.currency)} umgerechnet` : ""}.</p>
+  </section>`;
+}
+function bindDetail() {
+  document.querySelectorAll("[data-go-chap]").forEach((b) => b.addEventListener("click", () => document.getElementById(b.dataset.goChap)?.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" })));
+}
+
+/* ======================================================================
+   Diagramme
+   ====================================================================== */
+function tok(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+function alpha(color, a) {
+  const c = color.replace("#", "");
+  if (c.length !== 6) return color;
+  return `rgba(${parseInt(c.slice(0, 2), 16)},${parseInt(c.slice(2, 4), 16)},${parseInt(c.slice(4, 6), 16)},${a})`;
+}
+function tooltip(cb) {
+  return { backgroundColor: tok("--ink"), titleColor: tok("--bg"), bodyColor: tok("--bg"), padding: 10, cornerRadius: 8, displayColors: false,
+    titleFont: { family: "Geist" }, bodyFont: { family: "Geist Mono" }, callbacks: cb };
+}
+function axes(extra = {}) {
+  const grid = tok("--line"), txt = tok("--faint");
+  return Object.assign({
+    x: { grid: { display: false }, ticks: { color: txt, maxRotation: 0, autoSkip: true, maxTicksLimit: 7, font: { family: "Geist Mono", size: 11 } }, border: { color: grid } },
+    y: { grid: { color: grid, drawTicks: false }, ticks: { color: txt, padding: 8, font: { family: "Geist Mono", size: 11 }, maxTicksLimit: 6 }, border: { display: false } },
+  }, extra);
+}
+function drawCharts(s) {
+  if (!window.Chart) return;
+  const de = (x) => nf(2).format(x);
+  const base = { responsive: true, maintainAspectRatio: false, animation: false, interaction: { mode: "index", intersect: false }, plugins: { legend: { display: false } } };
+  const cp = document.getElementById("c-price");
+  if (cp) {
+    const labels = s.priceHistory.map((p) => p[0]);
+    const fvMap = Object.fromEntries((s.valuation.fvLine || []).map((p) => [p[0], p[1]]));
+    (s.valuation.fvLine || []).forEach((p) => { if (!labels.includes(p[0])) labels.push(p[0]); });
+    labels.sort();
+    const pMap = Object.fromEntries(s.priceHistory);
+    const ctx = cp.getContext("2d");
+    const grad = ctx.createLinearGradient(0, 0, 0, 260);
+    grad.addColorStop(0, alpha(tok("--price"), 0.16)); grad.addColorStop(1, alpha(tok("--price"), 0));
+    charts.push(new Chart(cp, {
+      type: "line",
+      data: { labels: labels.map((l) => l.slice(0, 4) + (l.slice(5) === "01" ? "" : "")), datasets: [
+        { label: "Kurs", data: labels.map((l) => pMap[l] ?? null), borderColor: tok("--price"), backgroundColor: grad, fill: true, borderWidth: 1.5, pointRadius: 0, spanGaps: true, tension: 0.2 },
+        { label: "Faire Linie", data: labels.map((l) => fvMap[l] ?? null), borderColor: tok("--brass"), backgroundColor: tok("--brass"), borderWidth: 2, pointRadius: 3, pointHoverRadius: 5, spanGaps: true },
+      ] },
+      options: { ...base, plugins: { legend: { display: false }, tooltip: tooltip({ title: (it) => labels[it[0].dataIndex], label: (c) => `${c.dataset.label}: ${de(c.parsed.y)} ${s.currency}` }) }, scales: axes() },
+    }));
+  }
+  const cd = document.getElementById("c-div");
+  if (cd) {
+    const h = s.dividend.history;
+    charts.push(new Chart(cd, {
+      type: "bar",
+      data: { labels: h.map((x) => x.year), datasets: [{ label: "Dividende", data: h.map((x) => x.dps),
+        backgroundColor: h.map((x, i) => (i > 0 && x.dps < h[i - 1].dps * 0.97 ? tok("--bad") : alpha(tok("--accent"), 0.85))), borderRadius: 3, maxBarThickness: 22 }] },
+      options: { ...base, plugins: { legend: { display: false }, tooltip: tooltip({ label: (c) => `${de(c.parsed.y)} ${s.currency}` }) }, scales: axes() },
+    }));
+  }
+  const cg = document.getElementById("c-growth");
+  if (cg) {
+    const a = s.annual;
+    const big = Math.max(...a.map((x) => x.revenue || 0));
+    const div = big >= 1e9 ? 1e9 : 1e6, unit = div === 1e9 ? "Mrd." : "Mio.";
+    const ax = axes();
+    charts.push(new Chart(cg, {
+      data: { labels: a.map((x) => x.year), datasets: [
+        { type: "bar", label: `Umsatz (${unit} ${s.finCurrency})`, data: a.map((x) => (x.revenue ? x.revenue / div : null)), backgroundColor: alpha(tok("--line-strong").length === 7 ? tok("--line-strong") : "#cccccc", 0.9), borderRadius: 3, maxBarThickness: 34, yAxisID: "y", order: 2 },
+        { type: "line", label: `Gewinn je Aktie (${s.currency})`, data: a.map((x) => x.eps), borderColor: tok("--accent"), backgroundColor: tok("--accent"), borderWidth: 2, pointRadius: 3.5, yAxisID: "y1", order: 1 },
+      ] },
+      options: { ...base, plugins: { legend: { display: false }, tooltip: tooltip({ label: (c) => `${c.dataset.label}: ${de(c.parsed.y)}` }) },
+        scales: { x: ax.x, y: { ...ax.y, position: "left" }, y1: { ...ax.y, position: "right", grid: { display: false }, ticks: { ...ax.y.ticks, color: tok("--accent") } } } },
+    }));
+  }
+}
+try {
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => { if (location.hash.startsWith("#a-")) route(); });
+  new MutationObserver(() => { if (location.hash.startsWith("#a-")) route(); }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+} catch {}
+
+/* ======================================================================
+   Lexikon & Methodik
+   ====================================================================== */
+function renderGlossary() {
+  const items = Object.entries(GLOSSARY).sort((a, b) => a[1].t.localeCompare(b[1].t, "de"));
+  return `<div class="page"><h1>Lexikon</h1>
+  <p class="intro">Alle Fachbegriffe, die in den Analysen vorkommen. In den Steckbriefen kannst du jeden unterstrichenen Begriff antippen, um die Erklärung direkt zu sehen.</p>
+  <div class="gl">${items.map(([k, g]) => `<article id="g-${k}"><h3>${g.t}${g.long || g.en ? `<span>${[g.long, g.en].filter(Boolean).join(" · ")}</span>` : ""}</h3><p>${g.d}</p>${g.ex ? `<p class="ex">Beispiel: ${g.ex}</p>` : ""}${g.rule ? `<p class="rule"><strong>Faustregel:</strong> ${g.rule}</p>` : ""}</article>`).join("")}</div></div>`;
+}
+function renderMethod() {
+  return `<div class="page"><h1>So wird bewertet</h1>
+  <p class="intro">Wertkompass folgt einer einfachen Idee: <strong>Kaufe gute Unternehmen, wenn sie günstig zu haben sind.</strong> Dafür bekommt jede Aktie vier Teilnoten von 0 bis 100.</p>
+  <ol class="steps">
+    <li><h3>Qualität (35 % der Gesamtnote)</h3><p>Wie profitabel und berechenbar ist das Geschäft? Wir messen ${term("roe")}, ${term("marge")}, ${term("fcfmarge")}, ${term("verschuldung")}, die ${term("stabilitaet")} und wie oft der Umsatz gestiegen ist. Bei Banken und Versicherungen zählen nur Eigenkapitalrendite und Stabilität. Bei zyklischen Branchen (Grundstoffe, Energie) ziehen wir 15 % ab, weil wenige gute Jahre die Stabilität überzeichnen.</p></li>
+    <li><h3>Bewertung (25 %)</h3><p>Wir berechnen einen ${term("fairerwert")} mit drei Methoden: <strong>KGV-Methode</strong> (erwarteter ${term("eps")} × ${term("avgkgv")}), <strong>KCV-Methode</strong> (${term("ocf")} je Aktie × Ø-${term("kcv")}) und <strong>Dividendenrendite-Methode</strong> (Dividende ÷ ${term("avgrendite")}). Als Gewinn nehmen wir die Analystenschätzung für die nächsten 12 Monate; ist sie nicht verfügbar, den Gewinn der letzten 12 Monate. Damit vergangene Übertreibungen nicht fortgeschrieben werden, setzen wir höchstens ein KGV von 30 und ein KCV von 25 an. Die Dividenden-Methode entfällt nach einer frischen Kürzung oder wenn die Dividende nicht verdient wird. Ergibt eine Methode mehr als das 4-fache oder weniger als ein Viertel des Kurses, wird sie als vermuteter Datenfehler verworfen. Je weiter der Kurs unter dem fairen Wert liegt, desto mehr Punkte: 0 Punkte bei 25 % Überbewertung, 100 Punkte ab 30 % Unterbewertung.</p></li>
+    <li><h3>Dividende (20 %)</h3><p>Höhe der ${term("divrendite")} (ideal 2–5 %, sehr hohe Renditen werden abgewertet), ${term("payout")} und ${term("payoutfcf")} als Sicherheitscheck, ${term("kontinuitaet")} und ${term("divwachstum")}.</p></li>
+    <li><h3>Wachstum (20 %)</h3><p>${term("cagr")} von ${term("umsatz")} und Gewinn je Aktie, das von Analysten erwartete Gewinnwachstum und das Dividendenwachstum.</p></li>
+  </ol>
+  <h2>Woher kommt die Idee?</h2>
+  <p>Die Bewertung über das eigene historische KGV und KCV ist ein verbreiteter Ansatz, den auch Portale wie Aktienfinder nutzen: Ein stabiles Unternehmen wird über die Jahre meist ähnlich bewertet. Weicht das KGV heute deutlich vom Durchschnitt ab, ist die Aktie entweder günstig oder der Markt sieht ein Problem. Genau das musst du dann prüfen, deshalb steht bei jeder Aktie die Qualitätsnote daneben.</p>
+  <h2>Welche Aktien sind enthalten?</h2>
+  <p>Das Universum wird automatisch über den Yahoo-Aktienscreener zusammengestellt: alle Unternehmen mit mindestens 10 Mrd. € Börsenwert an den Heimatbörsen von 23 Ländern (USA, Kanada, Deutschland, Schweiz, Österreich, Großbritannien, Frankreich, Niederlande, Skandinavien, Südeuropa, Japan, Australien, Hongkong, Singapur, Taiwan, Südkorea). Zweitlistings, etwa Apple an der Frankfurter Börse, werden aussortiert. Kleinere Wunschwerte wie Fielmann, Rational oder Krones stehen zusätzlich auf einer Wunschliste und werden immer mit ausgewertet.</p>
+  <h2>Grenzen</h2>
+  <p>Für US-Unternehmen und ausländische Konzerne, die an die US-Börsenaufsicht SEC berichten (z. B. SAP, Novartis, Toyota), stammen die älteren Jahresabschlüsse aus den kostenlosen SEC-Pflichtmeldungen: bei US-Firmen meist ab 2008, bei ausländischen meist ab 2018. Alle übrigen Unternehmen haben nur die 4–5 Jahre von Yahoo Finance. Jeder geladene Abschluss wird dauerhaft gespeichert, die Historie wächst also mit jedem Jahr. Durchschnitts-KGV, Stabilität und Wachstum werden über höchstens die letzten 10 Geschäftsjahre berechnet. Wie viele Jahre es bei einer Aktie sind, steht in ihrem Steckbrief. Bei zyklischen Unternehmen und Firmen im Umbruch ist der faire Wert besonders unsicher.</p>
+  <h2>Faustregeln zum Lernen</h2>
+  <ul>
+    <li>Ein niedriges KGV allein ist kein Kaufgrund. Erst zusammen mit hoher Qualität wird daraus eine Chance.</li>
+    <li>Eine Dividende ist nur so sicher wie der Cashflow, der sie bezahlt. Schau auf die Ausschüttungsquote.</li>
+    <li>Bei stabilen Firmen ist der faire Wert verlässlicher als bei zyklischen.</li>
+    <li>Ein Fehler in den Rohdaten kann jede Kennzahl verzerren. Prüfe bei einer Kaufentscheidung die Zahlen im Geschäftsbericht.</li>
+  </ul></div>`;
+}
+
+/* ======================================================================
+   Popover für Fachbegriffe
+   ====================================================================== */
+let popEl = null;
+function hidePop() { if (popEl) { popEl.remove(); popEl = null; } }
+function showPop(el) {
+  hidePop();
+  const g = GLOSSARY[el.dataset.term]; if (!g) return;
+  popEl = document.createElement("div"); popEl.className = "pop"; popEl.setAttribute("role", "tooltip");
+  popEl.innerHTML = `<b>${g.t}${g.long ? " · " + g.long : ""}</b>${g.d}${g.rule ? `<br><br><em>Faustregel:</em> ${g.rule}` : ""}<br><br><a href="#lexikon" data-go="${el.dataset.term}">Im Lexikon öffnen</a>`;
+  document.body.appendChild(popEl);
+  const r = el.getBoundingClientRect(), pw = popEl.offsetWidth;
+  let left = r.left + window.scrollX; left = Math.min(left, window.scrollX + document.documentElement.clientWidth - pw - 16); left = Math.max(16, left);
+  popEl.style.left = left + "px"; popEl.style.top = r.bottom + window.scrollY + 8 + "px";
+}
+document.addEventListener("click", (e) => {
+  const go = e.target.closest("[data-go]");
+  if (go) { e.preventDefault(); const k = go.dataset.go; hidePop(); location.hash = "lexikon"; setTimeout(() => document.getElementById("g-" + k)?.scrollIntoView({ block: "start" }), 30); return; }
+  const t = e.target.closest("dfn.t");
+  if (t) { e.preventDefault(); e.stopPropagation(); showPop(t); return; }
+  if (popEl && !e.target.closest(".pop")) hidePop();
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") hidePop();
+  if ((e.key === "Enter" || e.key === " ") && e.target.matches?.("dfn.t")) { e.preventDefault(); showPop(e.target); }
+});
+
+/* ======================================================================
+   Start
+   ====================================================================== */
+fetch("data/index.json").then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }).then((d) => {
+  DATA = d;
+  const dt = new Date(d.generated);
+  document.getElementById("stamp").textContent = `Datenstand ${dt.toLocaleDateString("de-DE", { day: "2-digit", month: "long", year: "numeric" })}`;
+  route();
+}).catch(() => {
+  document.getElementById("view").innerHTML = `<p class="empty">Die Aktiendaten konnten nicht geladen werden. Lade die Seite neu. Wenn der Fehler bleibt, fehlt die Datei data/index.json.</p>`;
+});
+</script>

@@ -1,0 +1,70 @@
+name: Daten aktualisieren und veröffentlichen
+
+on:
+  schedule:
+    # Montag bis Freitag, 23:17 Uhr UTC (nach US-Börsenschluss)
+    - cron: "17 23 * * 1-5"
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pipeline/requirements.txt
+      - run: pip install -r pipeline/requirements.txt
+      # Letzter Stand der Detaildaten (Rückfall, falls einzelne Abrufe scheitern)
+      - uses: actions/cache/restore@v4
+        with:
+          path: data/details
+          key: details-${{ github.run_id }}
+          restore-keys: details-
+      - name: Aktien-Universum aktualisieren (Börsenwert ab 10 Mrd. €)
+        run: python pipeline/universe.py || echo "Universum unverändert"
+      - name: Aktiendaten laden
+        env:
+          # Kontaktangabe für die US-Börsenaufsicht SEC (Repository-Secret, z. B. "Wertkompass name@example.com")
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
+        run: python pipeline/fetch.py
+      - uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: data/details
+          key: details-${{ github.run_id }}
+      - name: Archiv der Jahresabschlüsse speichern
+        run: |
+          git config user.name "wertkompass-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/history pipeline/universe.csv
+          git diff --cached --quiet || (git commit -m "Daten: Archiv aktualisiert" && git push)
+      - name: Seite bauen
+        run: python pipeline/build_site.py
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

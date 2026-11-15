@@ -1,0 +1,1473 @@
+ticker,name,country
+AAPL,Apple Inc.,United States
+MSFT,Microsoft Corporation,United States
+NVDA,NVIDIA Corporation,United States
+GOOGL,Alphabet Inc.,United States
+AMZN,"Amazon.com, Inc.",United States
+SPCX,Space Exploration Technologies Corp.,United States
+AVGO,Broadcom Inc.,United States
+META,"Meta Platforms, Inc.",United States
+TSLA,"Tesla, Inc.",United States
+LLY,Eli Lilly and Company,United States
+BRK-B,Berkshire Hathaway Inc.,United States
+WMT,Walmart Inc.,United States
+JPM,JPMorgan Chase & Co.,United States
+AMD,"Advanced Micro Devices, Inc.",United States
+MU,"Micron Technology, Inc.",United States
+V,Visa Inc.,United States
+XOM,ExxonMobil Holdings Corporation,United States
+JNJ,Johnson & Johnson,United States
+MA,Mastercard Incorporated,United States
+ASML.AS,ASML Holding N.V.,Netherlands
+ABBV,AbbVie Inc.,United States
+COST,Costco Wholesale Corporation,United States
+CVX,Chevron Corporation,United States
+KO,The Coca-Cola Company,United States
+PLTR,Palantir Technologies Inc.,United States
+PG,The Procter & Gamble Company,United States
+ROP.SW,Roche Holding AG,Switzerland
+ORCL,Oracle Corporation,United States
+CSCO,"Cisco Systems, Inc.",United States
+UNH,UnitedHealth Group Incorporated,United States
+MRK,"Merck & Co., Inc.",United States
+BAC,Bank of America Corporation,United States
+HD,"The Home Depot, Inc.",United States
+INTC,Intel Corporation,United States
+PM,Philip Morris International Inc.,United States
+HSBA.L,HSBC Holdings plc,United Kingdom
+NOVN.SW,Novartis AG,Switzerland
+MS,Morgan Stanley,United States
+AMAT,"Applied Materials, Inc.",United States
+SHEL.L,Shell plc,United Kingdom
+LRCX,Lam Research Corporation,United States
+TXN,Texas Instruments Incorporated,United States
+CAT,Caterpillar Inc.,United States
+SAP.DE,SAP SE,Germany
+NESN.SW,Nestlé S.A.,Switzerland
+RTX,RTX Corporation,United States
+OR.PA,L'Oréal S.A.,France
+GS,"The Goldman Sachs Group, Inc.",United States
+PANW,"Palo Alto Networks, Inc.",United States
+WFC,Wells Fargo & Company,United States
+TMO,Thermo Fisher Scientific Inc.,United States
+NFLX,"Netflix, Inc.",United States
+AMGN,Amgen Inc.,United States
+ANET,"Arista Networks, Inc.",United States
+LIN,Linde plc,United Kingdom
+SIE.DE,Siemens Aktiengesellschaft,Germany
+9988.HK,Alibaba Group Holding Limited,China
+IBM,International Business Machines Corporation,United States
+MC.PA,"LVMH Moët Hennessy - Louis Vuitton, Société Européenne",France
+AXP,American Express Company,United States
+DELL,Dell Technologies Inc.,United States
+GEV,GE Vernova Inc.,United States
+GILD,"Gilead Sciences, Inc.",United States
+DIS,The Walt Disney Company,United States
+ITX.MC,"Industria de Diseño Textil, S.A.",Spain
+C,Citigroup Inc.,United States
+TTE.PA,TotalEnergies SE,France
+ALV.DE,Allianz SE,Germany
+PEP,"PepsiCo, Inc.",United States
+KLAC,KLA Corporation,United States
+MCD,McDonald's Corporation,United States
+VZ,Verizon Communications Inc.,United States
+ADI,"Analog Devices, Inc.",United States
+APH,Amphenol Corporation,United States
+BLK,"BlackRock, Inc.",United States
+ABT,Abbott Laboratories,United States
+QCOM,QUALCOMM Incorporated,United States
+TMUS,"T-Mobile US, Inc.",United States
+DE,Deere & Company,United States
+UNP,Union Pacific Corporation,United States
+NOVO-B.CO,Novo Nordisk A/S,Denmark
+CRM,"Salesforce, Inc.",United States
+SAN.MC,"Banco Santander, S.A.",Spain
+IBE.MC,"Iberdrola, S.A.",Spain
+COP,ConocoPhillips,United States
+ABI.BR,Anheuser-Busch InBev SA/NV,Belgium
+PFE,Pfizer Inc.,United States
+DHR,Danaher Corporation,United States
+SCHW,The Charles Schwab Corporation,United States
+SU.PA,Schneider Electric S.E.,France
+RMS.PA,Hermès International Société en commandite par actions,France
+ISRG,"Intuitive Surgical, Inc.",United States
+ABBN.SW,ABB Ltd,Switzerland
+T,AT&T Inc.,United States
+TJX,"The TJX Companies, Inc.",United States
+RR.L,Rolls-Royce Holdings plc,United Kingdom
+UBSG.SW,UBS Group AG,Switzerland
+CB,Chubb Limited,Switzerland
+ULVR.L,Unilever PLC,United Kingdom
+BBVA.MC,"Banco Bilbao Vizcaya Argentaria, S.A.",Spain
+UBER,"Uber Technologies, Inc.",United States
+DTE.DE,Deutsche Telekom AG,Germany
+SAF.PA,Safran SA,France
+MRVL,"Marvell Technology, Inc.",United States
+UCG.MI,UniCredit S.p.A.,Italy
+SPGI,S&P Global Inc.,United States
+LMT,Lockheed Martin Corporation,United States
+VRTX,Vertex Pharmaceuticals Incorporated,United States
+AI.PA,L'Air Liquide S.A.,France
+APP,AppLovin Corporation,United States
+RIO.L,Rio Tinto Group,United Kingdom
+BA,The Boeing Company,United States
+BATS.L,British American Tobacco p.l.c.,United Kingdom
+MDT,Medtronic plc,Ireland
+MO,"Altria Group, Inc.",United States
+BMY,Bristol-Myers Squibb Company,United States
+SPOT,Spotify Technology S.A.,Sweden
+ENR.DE,Siemens Energy AG,Germany
+SNDK,Sandisk Corporation,United States
+ADP,"Automatic Data Processing, Inc.",United States
+SBUX,Starbucks Corporation,United States
+PH,Parker-Hannifin Corporation,United States
+BKNG,Booking Holdings Inc.,United States
+ISP.MI,Intesa Sanpaolo S.p.A.,Italy
+SYK,Stryker Corporation,United States
+NEM,Newmont Corporation,United States
+BP.L,BP p.l.c.,United Kingdom
+ZURN.SW,Zurich Insurance Group AG,Switzerland
+SAN.PA,Sanofi,France
+BNP.PA,BNP Paribas SA,France
+CME,CME Group Inc.,United States
+CVS,CVS Health Corporation,United States
+MPC,Marathon Petroleum Corporation,United States
+SO,The Southern Company,United States
+MAR,"Marriott International, Inc.",United States
+ENEL.MI,Enel SpA,Italy
+ABNB,"Airbnb, Inc.",United States
+CS.PA,AXA SA,France
+WDC,Western Digital Corporation,United States
+NOW,"ServiceNow, Inc.",United States
+VLO,Valero Energy Corporation,United States
+BNY,The Bank of New York Mellon Corporation,United States
+SNOW,Snowflake Inc.,United States
+PSX,Phillips 66,United States
+GSK.L,GSK plc,United Kingdom
+DUK,Duke Energy Corporation,United States
+ICE,"Intercontinental Exchange, Inc.",United States
+REGN,"Regeneron Pharmaceuticals, Inc.",United States
+GD,General Dynamics Corporation,United States
+CEG,Constellation Energy Corporation,United States
+WM,"Waste Management, Inc.",United States
+CSX,CSX Corporation,United States
+GLW,Corning Incorporated,United States
+MMM,3M Company,United States
+UPS,"United Parcel Service, Inc.",United States
+USB,U.S. Bancorp,United States
+BX,Blackstone Inc.,United States
+INGA.AS,ING Groep N.V.,Netherlands
+CABK.MC,"CaixaBank, S.A.",Spain
+ADBE,Adobe Inc.,United States
+PNC,"The PNC Financial Services Group, Inc.",United States
+EL.PA,EssilorLuxottica Société anonyme,France
+MRNA,"Moderna, Inc.",United States
+INTU,Intuit Inc.,United States
+ELV,"Elevance Health, Inc.",United States
+EMR,Emerson Electric Co.,United States
+CTAS,Cintas Corporation,United States
+CMCSA,Comcast Corporation,United States
+CDNS,"Cadence Design Systems, Inc.",United States
+MSI,"Motorola Solutions, Inc.",United States
+HWM,Howmet Aerospace Inc.,United States
+CDI.PA,Christian Dior SE,France
+ECL,Ecolab Inc.,United States
+SNPS,"Synopsys, Inc.",United States
+WMB,"The Williams Companies, Inc.",United States
+SHW,The Sherwin-Williams Company,United States
+NG.L,National Grid plc,United Kingdom
+FCX,Freeport-McMoRan Inc.,United States
+MDLZ,"Mondelez International, Inc.",United States
+HLT,Hilton Worldwide Holdings Inc.,United States
+JCI,Johnson Controls International plc,Ireland
+TRV,"The Travelers Companies, Inc.",United States
+PRX.AS,Prosus N.V.,Netherlands
+MUV2.DE,Münchener Rückversicherungs-Gesellschaft Aktiengesellschaft in München,Germany
+ITW,Illinois Tool Works Inc.,United States
+EOG,"EOG Resources, Inc.",United States
+ENI.MI,Eni S.p.A.,Italy
+CL,Colgate-Palmolive Company,United States
+NOC,Northrop Grumman Corporation,United States
+CI,The Cigna Group,United States
+VRT,Vertiv Holdings Co,United States
+BARC.L,Barclays PLC,United Kingdom
+DHL.DE,DHL AG,Germany
+MELI,"MercadoLibre, Inc.",Uruguay
+FDX,FedEx Corporation,United States
+NSC,Norfolk Southern Corporation,United States
+ROST,"Ross Stores, Inc.",United States
+LLOY.L,Lloyds Banking Group plc,United Kingdom
+TGT,Target Corporation,United States
+G.MI,Assicurazioni Generali S.p.A.,Italy
+GM,General Motors Company,United States
+AJG,Arthur J. Gallagher & Co.,United States
+BA.L,BAE Systems plc,United Kingdom
+RACE.MI,Ferrari N.V.,Italy
+IFX.DE,Infineon Technologies AG,Germany
+URI,"United Rentals, Inc.",United States
+KMI,"Kinder Morgan, Inc.",United States
+AEP,"American Electric Power Company, Inc.",United States
+ENGI.PA,Engie SA,France
+REL.L,RELX PLC,United Kingdom
+APD,"Air Products and Chemicals, Inc.",United States
+HON,Honeywell International Inc.,United States
+DG.PA,Vinci SA,France
+DBK.DE,Deutsche Bank Aktiengesellschaft,Germany
+KMB,Kimberly-Clark Corporation,United States
+ALL,The Allstate Corporation,United States
+NXPI,NXP Semiconductors N.V.,Netherlands
+DDOG,"Datadog, Inc.",United States
+DB1.DE,Deutsche Börse AG,Germany
+BSX,Boston Scientific Corporation,United States
+MET,"MetLife, Inc.",United States
+NDA-FI.HE,Nordea Bank Abp,Finland
+STAN.L,Standard Chartered PLC,United Kingdom
+FAST,Fastenal Company,United States
+HPE,Hewlett Packard Enterprise Company,United States
+NWG.L,NatWest Group plc,United Kingdom
+LSEG.L,London Stock Exchange Group plc,United Kingdom
+EW,Edwards Lifesciences Corporation,United States
+CMI,Cummins Inc.,United States
+ABX.TO,Barrick Mining Corporation,Canada
+BAYN.DE,Bayer Aktiengesellschaft,Germany
+NDAQ,"Nasdaq, Inc.",United States
+WPM.TO,Wheaton Precious Metals Corp.,Canada
+TFC,Truist Financial Corporation,United States
+BDX,"Becton, Dickinson and Company",United States
+D,"Dominion Energy, Inc.",United States
+OXY,Occidental Petroleum Corporation,United States
+DAL,"Delta Air Lines, Inc.",United States
+DGE.L,Diageo plc,United Kingdom
+NKE,"NIKE, Inc.",United States
+EOAN.DE,E.ON SE,Germany
+PCAR,PACCAR Inc,United States
+BE,Bloom Energy Corporation,United States
+ADSK,"Autodesk, Inc.",United States
+IDXX,"IDEXX Laboratories, Inc.",United States
+AME,"AMETEK, Inc.",United States
+SHL.DE,Siemens Healthineers AG,Germany
+AAL.L,Anglo American plc,United Kingdom
+EBAY,eBay Inc.,United States
+LITE,Lumentum Holdings Inc.,United States
+GLE.PA,Société Générale Société anonyme,France
+BAS.DE,BASF SE,Germany
+ACA.PA,Crédit Agricole S.A.,France
+XEL,Xcel Energy Inc.,United States
+HONA,Honeywell Aerospace Inc.,United States
+HEIA.AS,Heineken N.V.,Netherlands
+DSV.CO,DSV A/S,Denmark
+SRE,Sempra,United States
+ELE.MC,"Endesa, S.A.",Spain
+FANG,"Diamondback Energy, Inc.",United States
+RWE.DE,RWE Aktiengesellschaft,Germany
+XYZ,"Block, Inc.",United States
+KEYS,"Keysight Technologies, Inc.",United States
+LHX,"L3Harris Technologies, Inc.",United States
+WAB,Westinghouse Air Brake Technologies Corporation,United States
+FERG,Ferguson Enterprises Inc.,United States
+BN.PA,Danone S.A.,France
+EBS.VI,Erste Group Bank AG,Austria
+PYPL,"PayPal Holdings, Inc.",United States
+HOLN.SW,Holcim AG,Switzerland
+VEEV,Veeva Systems Inc.,United States
+EXC,Exelon Corporation,United States
+RKT.L,Reckitt Benckiser Group plc,United Kingdom
+F,Ford Motor Company,United States
+CBK.DE,Commerzbank AG,Germany
+MT,ArcelorMittal S.A.,Luxembourg
+MSCI,MSCI Inc.,United States
+WDAY,"Workday, Inc.",United States
+MSTR,Strategy Inc,United States
+TSCO.L,Tesco PLC,United Kingdom
+ORA.PA,Orange S.A.,France
+P911.DE,Dr. Ing. h.c. F. Porsche AG,Germany
+NOKIA.HE,Nokia Oyj,Finland
+YUM,"Yum! Brands, Inc.",United States
+ED,"Consolidated Edison, Inc.",United States
+VST,Vistra Corp.,United States
+CMG,"Chipotle Mexican Grill, Inc.",United States
+CARR,Carrier Global Corporation,United States
+ROK,"Rockwell Automation, Inc.",United States
+SSE.L,SSE plc,United Kingdom
+MAERSK-B.CO,A.P. Møller - Mærsk A/S,Denmark
+IQV,IQVIA Holdings Inc.,United States
+TTWO,"Take-Two Interactive Software, Inc.",United States
+MBG.DE,Mercedes-Benz Group AG,Germany
+LYV,"Live Nation Entertainment, Inc.",United States
+PRU,"Prudential Financial, Inc.",United States
+KR,The Kroger Co.,United States
+COHR,Coherent Corp.,United States
+PAYX,"Paychex, Inc.",United States
+STM,STMicroelectronics N.V.,Switzerland
+EL,The Estée Lauder Companies Inc.,United States
+SGO.PA,Compagnie de Saint-Gobain S.A.,France
+HLN.L,Haleon plc,United Kingdom
+HNR1.DE,Hannover Rück SE,Germany
+RHM.DE,Rheinmetall AG,Germany
+CIEN,Ciena Corporation,United States
+WEC,"WEC Energy Group, Inc.",United States
+HEN3.DE,Henkel AG & Co. KGaA,Germany
+TER,"Teradyne, Inc.",United States
+ALAB,"Astera Labs, Inc.",United States
+TEAM,Atlassian Corporation,Australia
+TLX.DE,Talanx AG,Germany
+ABN.AS,ABN AMRO Bank N.V.,Netherlands
+FOXA,Fox Corporation,United States
+BMW.DE,Bayerische Motoren Werke Aktiengesellschaft,Germany
+VOW3.DE,Volkswagen AG,Germany
+PEG,Public Service Enterprise Group Incorporated,United States
+ASM.AS,ASM International NV,Netherlands
+BIIB,Biogen Inc.,United States
+HIG,"The Hartford Insurance Group, Inc.",United States
+RVMD,"Revolution Medicines, Inc.",United States
+REP.MC,"Repsol, S.A.",Spain
+VOD.L,Vodafone Group Public Limited Company,United Kingdom
+MDLN,Medline Inc.,United States
+DTG.DE,Daimler Truck Holding AG,Germany
+ODFL,"Old Dominion Freight Line, Inc.",United States
+ALC.SW,Alcon Inc.,Switzerland
+NTAP,"NetApp, Inc.",United States
+HSY,The Hershey Company,United States
+ERIC-B.ST,Telefonaktiebolaget LM Ericsson (publ),Sweden
+AD.AS,Koninklijke Ahold Delhaize N.V.,Netherlands
+HEI.DE,Heidelberg Materials AG,Germany
+MTD,Mettler-Toledo International Inc.,Switzerland
+ADM,Archer-Daniels-Midland Company,United States
+NTR.TO,Nutrien Ltd.,Canada
+COIN,"Coinbase Global, Inc.",United States
+FISV,"Fiserv, Inc.",United States
+ZTS,Zoetis Inc.,United States
+KNIN.SW,Kuehne + Nagel International AG,Switzerland
+FRE.DE,Fresenius SE & Co. KGaA,Germany
+ADS.DE,adidas AG,Germany
+EQT,EQT Corporation,United States
+VG,"Venture Global, Inc.",United States
+IR,Ingersoll Rand Inc.,United States
+MCHP,Microchip Technology Incorporated,United States
+NSIS-B.CO,Novozymes A/S,Denmark
+HBAN,Huntington Bancshares Incorporated,United States
+GMAB.CO,Genmab A/S,Denmark
+2378.HK,Prudential plc,Hong Kong
+EXPE,"Expedia Group, Inc.",United States
+ZS,"Zscaler, Inc.",United States
+HOT.DE,HOCHTIEF Aktiengesellschaft,Germany
+ILMN,"Illumina, Inc.",United States
+DXCM,"DexCom, Inc.",United States
+ARES,Ares Management Corporation,United States
+ADYEN.AS,Adyen N.V.,Netherlands
+AV.L,Aviva plc,United Kingdom
+AWK,"American Water Works Company, Inc.",United States
+DG,Dollar General Corporation,United States
+CPAY,"Corpay, Inc.",United States
+OTIS,Otis Worldwide Corporation,United States
+KHC,The Kraft Heinz Company,United States
+PHIA.AS,Koninklijke Philips N.V.,Netherlands
+IMB.L,Imperial Brands PLC,United Kingdom
+SAMPO.HE,Sampo Oyj,Finland
+PCG,PG&E Corporation,United States
+RYA.IR,Ryanair Holdings plc,Ireland
+AMS.MC,"Amadeus IT Group, S.A.",Spain
+ECHO,EchoStar Corporation,United States
+VLTO,Veralto Corporation,United States
+ZM,"Zoom Communications, Inc.",United States
+CRWV,"CoreWeave, Inc.",United States
+HM-B.ST,H & M Hennes & Mauritz AB (publ),Sweden
+DSFIR.SW,DSM-Firmenich AG,Switzerland
+CTSH,Cognizant Technology Solutions Corporation,United States
+VER.VI,VERBUND AG,Austria
+VIE.PA,Veolia Environnement SA,France
+VRSN,"VeriSign, Inc.",United States
+VWS.CO,Vestas Wind Systems A/S,Denmark
+TW,Tradeweb Markets Inc.,United States
+ORSTED.CO,Ørsted A/S,Denmark
+HAL,Halliburton Company,United States
+ON,ON Semiconductor Corporation,United States
+CPNG,"Coupang, Inc.",United States
+VRSK,"Verisk Analytics, Inc.",United States
+PPL,PPL Corporation,United States
+CHD,"Church & Dwight Co., Inc.",United States
+OMV.VI,OMV Aktiengesellschaft,Austria
+HPQ,HP Inc.,United States
+IHG,InterContinental Hotels Group PLC,United Kingdom
+DLTR,"Dollar Tree, Inc.",United States
+TPR,"Tapestry, Inc.",United States
+IAG.L,International Consolidated Airlines Group S.A.,United Kingdom
+AM.PA,Dassault Aviation société anonyme,France
+LVS,Las Vegas Sands Corp.,United States
+AXON,"Axon Enterprise, Inc.",United States
+KER.PA,Kering SA,France
+HLAG.DE,Hapag-Lloyd Aktiengesellschaft,Germany
+STZ,"Constellation Brands, Inc.",United States
+Q,"Qnity Electronics, Inc.",United States
+K.TO,Kinross Gold Corporation,Canada
+RF,Regions Financial Corporation,United States
+GPN,Global Payments Inc.,United States
+DIM.PA,Sartorius Stedim Biotech S.A.,France
+OMC,Omnicom Group Inc.,United States
+VTRS,Viatris Inc.,United States
+EBK.DE,EnBW Energie Baden-Württemberg AG,Germany
+RL,Ralph Lauren Corporation,United States
+NN.AS,NN Group N.V.,Netherlands
+USFD,US Foods Holding Corp.,United States
+GEBN.SW,Geberit AG,Switzerland
+CAP.PA,Capgemini SE,France
+RBI.VI,Raiffeisen Bank International AG,Austria
+KEY,KeyCorp,United States
+SYF,Synchrony Financial,United States
+LGEN.L,Legal & General Group Plc,United Kingdom
+WKL.AS,Wolters Kluwer N.V.,Netherlands
+LUV,Southwest Airlines Co.,United States
+AFRM,"Affirm Holdings, Inc.",United States
+SRT3.DE,Sartorius Aktiengesellschaft,Germany
+ALNY,"Alnylam Pharmaceuticals, Inc.",United States
+XPO,"XPO, Inc.",United States
+CMS,CMS Energy Corporation,United States
+TEF.MC,"Telefónica, S.A.",Spain
+AMUN.PA,Amundi S.A.,France
+PTC,PTC Inc.,United States
+TSN,"Tyson Foods, Inc.",United States
+22UA.DE,BioNTech SE,Germany
+MTX.DE,MTU Aero Engines AG,Germany
+SWKS,"Skyworks Solutions, Inc.",United States
+STMN.SW,Straumann Holding AG,Switzerland
+NRG,"NRG Energy, Inc.",United States
+BEI.DE,Beiersdorf Aktiengesellschaft,Germany
+SOFI,"SoFi Technologies, Inc.",United States
+FTV,Fortive Corporation,United States
+RI.PA,Pernod Ricard SA,France
+UN0.DE,Uniper SE,Germany
+SOON.SW,Sonova Holding AG,Switzerland
+FDXF,"FedEx Freight Holding Company, Inc.",United States
+SAB.MC,"Banco de Sabadell, S.A.",Spain
+CLNX.MC,"Cellnex Telecom, S.A.",Spain
+PR,Permian Resources Corporation,United States
+CNH,CNH Industrial N.V.,United Kingdom
+8TRA.DE,Traton SE,Germany
+TSCO,Tractor Supply Company,United States
+6690.HK,"Haier Smart Home Co., Ltd.",China
+KPN.AS,Koninklijke KPN N.V.,Netherlands
+GIS,"General Mills, Inc.",United States
+FSLR,"First Solar, Inc.",United States
+KBX.DE,Knorr-Bremse AG,Germany
+SMCI,"Super Micro Computer, Inc.",United States
+CW,Curtiss-Wright Corporation,United States
+COLO-B.CO,Coloplast A/S,Denmark
+WRT1V.HE,Wärtsilä Oyj Abp,Finland
+JHX,James Hardie Industries plc,Ireland
+CON.DE,Continental Aktiengesellschaft,Germany
+EXO.AS,Exor N.V.,Netherlands
+ALLE,Allegion plc,Ireland
+CRCL,Circle Internet Group,United States
+CHTR,"Charter Communications, Inc.",United States
+VNA.DE,Vonovia SE,Germany
+NVR,"NVR, Inc.",United States
+JAZZ,Jazz Pharmaceuticals plc,Ireland
+BBIO,"BridgeBio Pharma, Inc.",United States
+PNFP,"Pinnacle Financial Partners, Inc.",United States
+ZBRA,Zebra Technologies Corporation,United States
+URW.PA,Unibail-Rodamco-Westfield SE,France
+DWS.DE,DWS Group GmbH & Co. KGaA,Germany
+SY1.DE,Symrise AG,Germany
+MAP.MC,"Mapfre, S.A.",Spain
+BG.VI,BAWAG Group AG,Austria
+MTZ,"MasTec, Inc.",United States
+CDE,"Coeur Mining, Inc.",United States
+LOGN.SW,Logitech International S.A.,Switzerland
+SJM,The J. M. Smucker Company,United States
+TIT.MI,Telecom Italia S.p.A.,Italy
+STR.VI,Strabag SE,Austria
+BSY,"Bentley Systems, Incorporated",United States
+BESI.AS,BE Semiconductor Industries N.V.,Netherlands
+CLX,The Clorox Company,United States
+UPM.HE,UPM-Kymmene Oyj,Finland
+GME,GameStop Corp.,United States
+JBS,JBS N.V.,Netherlands
+DKS,"DICK'S Sporting Goods, Inc.",United States
+AC.PA,Accor SA,France
+DT,"Dynatrace, Inc.",United States
+TEM,"Tempus AI, Inc.",United States
+G1A.DE,GEA Group Aktiengesellschaft,Germany
+1COV.DE,Covestro AG,Germany
+DHER.DE,Delivery Hero SE,Germany
+CSGP,"CoStar Group, Inc.",United States
+TXRH,"Texas Roadhouse, Inc.",United States
+LULU,lululemon athletica inc.,Canada
+ALGN,"Align Technology, Inc.",United States
+COO,"The Cooper Companies, Inc.",United States
+LII,Lennox International Inc.,United States
+LHA.DE,Deutsche Lufthansa AG,Germany
+DECK,Deckers Outdoor Corporation,United States
+FME.DE,Fresenius Medical Care AG,Germany
+STLA,Stellantis N.V.,Netherlands
+ONON,On Holding AG,Switzerland
+GSAT,"Globalstar, Inc.",United States
+CA.PA,Carrefour SA,France
+CFR.SW,Compagnie Financière Richemont SA,Switzerland
+LISP.SW,Chocoladefabriken Lindt & Sprüngli AG,Switzerland
+AEM.TO,Agnico Eagle Mines Limited,Canada
+LONN.SW,Lonza Group AG,Switzerland
+SREN.SW,Swiss Re AG,Switzerland
+GALD.SW,Galderma Group AG,Switzerland
+GIVN.SW,Givaudan SA,Switzerland
+SCMN.SW,Swisscom AG,Switzerland
+SDZ.SW,Sandoz Group AG,Switzerland
+SCHP.SW,Schindler Holding AG,Switzerland
+SIKA.SW,Sika AG,Switzerland
+SLHN.SW,Swiss Life Holding AG,Switzerland
+HBAN.SW,Helvetia Baloise Holding AG,Switzerland
+SGSN.SW,SGS SA,Switzerland
+EMSN.SW,EMS-CHEMIE HOLDING AG,Switzerland
+AMRZ.SW,Amrize AG,Switzerland
+PGHN.SW,Partners Group Holding AG,Switzerland
+VACN.SW,VAT Group AG,Switzerland
+BAER.SW,Julius Bär Gruppe AG,Switzerland
+BCVN.SW,Banque Cantonale Vaudoise,Switzerland
+SPSN.SW,Swiss Prime Site AG,Switzerland
+UHR.SW,The Swatch Group AG,Switzerland
+BEAN.SW,BELIMO Holding AG,Switzerland
+2330.TW,Taiwan Semiconductor Manufacturing Company Limited,Taiwan
+005930.KS,"Samsung Electronics Co., Ltd.",South Korea
+0700.HK,Tencent Holdings Limited,China
+1398.HK,Industrial and Commercial Bank of China Limited,China
+0939.HK,China Construction Bank Corporation,China
+1288.HK,Agricultural Bank of China Limited,China
+3988.HK,Bank of China Limited,China
+7203.T,Toyota Motor Corporation,Japan
+0857.HK,PetroChina Company Limited,China
+3750.HK,"Contemporary Amperex Technology Co., Limited",China
+NEE,"NextEra Energy, Inc.",United States
+6758.T,Sony Group Corporation,Japan
+ACN,Accenture plc,Ireland
+PGR,The Progressive Corporation,United States
+ETN,Eaton Corporation plc,Ireland
+LOW,"Lowe's Companies, Inc.",United States
+MCK,McKesson Corporation,United States
+8058.T,Mitsubishi Corporation,Japan
+9984.T,SoftBank Group Corp.,Japan
+PLD,"Prologis, Inc.",United States
+2318.HK,"Ping An Insurance (Group) Company of China, Ltd.",China
+STX,Seagate Technology Holdings plc,Singapore
+COF,Capital One Financial Corporation,United States
+HCA,"HCA Healthcare, Inc.",United States
+EQIX,"Equinix, Inc.",United States
+8001.T,ITOCHU Corporation,Japan
+MRSH,"Marsh & McLennan Companies, Inc.",United States
+FTNT,"Fortinet, Inc.",United States
+TT,Trane Technologies plc,Ireland
+MNST,Monster Beverage Corporation,United States
+PWR,"Quanta Services, Inc.",United States
+AMT,American Tower Corporation,United States
+MCO,Moody's Corporation,United States
+KKR,KKR & Co. Inc.,United States
+9432.T,"NTT, Inc.",Japan
+CVNA,Carvana Co.,United States
+9999.HK,"NetEase, Inc.",China
+1211.HK,BYD Company Limited,China
+SPG,"Simon Property Group, Inc.",United States
+DASH,"DoorDash, Inc.",United States
+ORLY,"O'Reilly Automotive, Inc.",United States
+AON,Aon plc,Ireland
+GWW,"W.W. Grainger, Inc.",United States
+HOOD,"Robinhood Markets, Inc.",United States
+4502.T,Takeda Pharmaceutical Company Limited,Japan
+COR,"Cencora, Inc.",United States
+MPWR,"Monolithic Power Systems, Inc.",United States
+TDG,TransDigm Group Incorporated,United States
+2914.T,Japan Tobacco Inc.,Japan
+7974.T,"Nintendo Co., Ltd.",Japan
+AFL,Aflac Incorporated,United States
+CRH,CRH plc,Ireland
+UCB.BR,UCB SA,Belgium
+ARGX,argenx SE,Netherlands
+O,Realty Income Corporation,United States
+GRMN,Garmin Ltd.,Switzerland
+DVN,Devon Energy Corporation,United States
+AZO,"AutoZone, Inc.",United States
+CCEP.L,Coca-Cola Europacific Partners PLC,United Kingdom
+HO.PA,Thales S.A.,France
+INFY,Infosys Limited,India
+KDP,Keurig Dr Pepper Inc.,United States
+BKR,Baker Hughes Company,United States
+ROP,"Roper Technologies, Inc.",United States
+AENA.MC,"Aena S.M.E., S.A.",Spain
+STT,State Street Corporation,United States
+6752.T,Panasonic Holdings Corporation,Japan
+PST.MI,Poste Italiane S.p.A.,Italy
+AMP,"Ameriprise Financial, Inc.",United States
+DANSKE.CO,Danske Bank A/S,Denmark
+AIG,"American International Group, Inc.",United States
+RKLB,Rocket Lab Corporation,United States
+6367.T,"Daikin Industries,Ltd.",Japan
+LR.PA,Legrand SA,France
+BMPS.MI,Banca Monte dei Paschi di Siena S.p.A.,Italy
+CCI,Crown Castle Inc.,United States
+SYY,Sysco Corporation,United States
+DSY.PA,Dassault Systèmes SE,France
+9618.HK,"JD.com, Inc.",China
+IBKR,"Interactive Brokers Group, Inc.",United States
+UAL,"United Airlines Holdings, Inc.",United States
+PRY.MI,Prysmian S.p.A.,Italy
+UMG.AS,Universal Music Group N.V.,Netherlands
+6301.T,Komatsu Ltd.,Japan
+RMD,ResMed Inc.,United States
+NBIS,Nebius Group N.V.,Netherlands
+TWLO,Twilio Inc.,United States
+NTGY.MC,"Naturgy Energy Group, S.A.",Spain
+LDO.MI,Leonardo S.p.a.,Italy
+BPE.MI,BPER Banca SpA,Italy
+PUB.PA,Publicis Groupe S.A.,France
+ULTA,"Ulta Beauty, Inc.",United States
+ES,Eversource Energy,United States
+PPG,"PPG Industries, Inc.",United States
+ACS.MC,"ACS, Actividades de Construcción y Servicios, S.A.",Spain
+9888.HK,"Baidu, Inc.",China
+BSP,Bending Spoons S.p.A.,Italy
+FTI,TechnipFMC plc,United Kingdom
+7751.T,Canon Inc.,Japan
+BAMI.MI,Banco BPM S.p.A.,Italy
+MB.MI,Mediobanca Banca di Credito Finanziario S.p.A.,Italy
+2338.HK,"Weichai Power Co., Ltd.",China
+DOW,Dow Inc.,United States
+SRG.MI,Snam S.p.A.,Italy
+TROW,"T. Rowe Price Group, Inc.",United States
+TRN.MI,Terna S.p.A.,Italy
+EFX,Equifax Inc.,United States
+XYL,Xylem Inc.,United States
+JBHT,"J.B. Hunt Transport Services, Inc.",United States
+UNI.MI,Unipol Assicurazioni S.p.A.,Italy
+WIT,Wipro Limited,India
+IFF,International Flavors & Fragrances Inc.,United States
+CARL-A.CO,Carlsberg A/S,Denmark
+ZBH,"Zimmer Biomet Holdings, Inc.",United States
+BMED.MI,Banca Mediolanum S.p.A.,Italy
+EN.PA,Bouygues SA,France
+0175.HK,Geely Automobile Holdings Limited,Hong Kong
+IP,International Paper Company,United States
+ASRNL.AS,ASR Nederland N.V.,Netherlands
+HAS,"Hasbro, Inc.",United States
+BALL,Ball Corporation,United States
+WMG,Warner Music Group Corp.,United States
+SWK,"Stanley Black & Decker, Inc.",United States
+ELI.BR,Elia Group SA/NV,Belgium
+FBK.MI,FinecoBank Banca Fineco S.p.A.,Italy
+2600.HK,Aluminum Corporation of China Limited,China
+IPN.PA,Ipsen S.A.,France
+CHKP,Check Point Software Technologies Ltd.,Israel
+BVI.PA,Bureau Veritas SA,France
+FIS,"Fidelity National Information Services, Inc.",United States
+TRYG.CO,Tryg A/S,Denmark
+BKT.MC,"Bankinter, S.A.",Spain
+BAX,Baxter International Inc.,United States
+MONC.MI,Moncler S.p.A.,Italy
+LOTB.BR,Lotus Bakeries NV,Belgium
+6594.T,Nidec Corporation,Japan
+MKC,"McCormick & Company, Incorporated",United States
+ADP.PA,Aeroports de Paris SA,France
+RXL.PA,Rexel S.A.,France
+GET.PA,Getlink SE,France
+AGN.AS,Aegon Ltd.,Netherlands
+REC.MI,Recordati Industria Chimica e Farmaceutica S.p.A.,Italy
+HRL,Hormel Foods Corporation,United States
+AKAM,"Akamai Technologies, Inc.",United States
+AKZA.AS,Akzo Nobel N.V.,Netherlands
+BIM.PA,bioMérieux S.A.,France
+ANA.MC,"Acciona, S.A.",Spain
+TUB.BR,Financière de Tubize SA,Belgium
+0763.HK,ZTE Corporation,China
+LI.PA,Klépierre SA,France
+FGR.PA,Eiffage SA,France
+BOL.PA,Bolloré SE,France
+DPZ,"Domino's Pizza, Inc.",United States
+IDR.MC,"Indra Sistemas, S.A.",Spain
+7309.T,Shimano Inc.,Japan
+AZN.L,AstraZeneca PLC,United Kingdom
+BHP.AX,BHP Group Limited,Australia
+SAN.L,Santander UK plc,United Kingdom
+9766.T,Konami Group Corporation,Japan
+ANTO.L,Antofagasta plc,United Kingdom
+III.L,3i Group Ord,United Kingdom
+SUNB,"Sunbelt Rentals Holdings, Inc.",United States
+BT-A.L,BT Group plc,United Kingdom
+A5G.IR,AIB Group plc,Ireland
+NXT.L,NEXT plc,United Kingdom
+1038.HK,CK Infrastructure Holdings Limited,Hong Kong
+ABF.L,Associated British Foods plc,United Kingdom
+HLMA.L,Halma plc,United Kingdom
+SGRO.L,SEGRO Plc,United Kingdom
+INF.L,Informa plc,United Kingdom
+ADM.L,Admiral Group plc,United Kingdom
+UU.L,United Utilities Group PLC,United Kingdom
+SGE.L,The Sage Group plc,United Kingdom
+AAF.L,Airtel Africa Plc,United Kingdom
+S32.AX,South32 Limited,Australia
+SVT.L,Severn Trent PLC,United Kingdom
+SN.L,Smith & Nephew plc,United Kingdom
+DPLM.L,Diploma PLC,United Kingdom
+MKS.L,Marks and Spencer Group plc,United Kingdom
+SDLF.L,Standard Life plc,United Kingdom
+EDV.L,Endeavour Mining plc,United Kingdom
+ITRK.L,Intertek Group plc,United Kingdom
+MICC.AS,The Magnum Ice Cream Company N.V.,Netherlands
+RTO.L,Rentokil Initial plc,United Kingdom
+BNZL.L,Bunzl plc,United Kingdom
+WISE.L,Wise Group plc,United Kingdom
+HAL.AS,HAL Trust,Netherlands
+PBR,Petróleo Brasileiro S.A. - Petrobras,Brazil
+VALE,Vale S.A.,Brazil
+FER,Ferrovial N.V.,Netherlands
+BBD,Banco Bradesco S.A.,Brazil
+PUIG.MC,"Puig Brands, S.A.",Spain
+TS,Tenaris S.A.,Luxembourg
+TPRO.MI,Technoprobe S.p.A.,Italy
+INVE-B.ST,Investor AB (publ),Sweden
+ATCO-A.ST,Atlas Copco AB (publ),Sweden
+VOLV-B.ST,AB Volvo (publ),Sweden
+SHB-A.ST,Svenska Handelsbanken AB (publ),Sweden
+SWED-A.ST,Swedbank AB (publ),Sweden
+SAND.ST,Sandvik AB (publ),Sweden
+SEB-A.ST,Skandinaviska Enskilda Banken AB (publ),Sweden
+EQT.ST,EQT AB (publ),Sweden
+SAAB-B.ST,Saab AB (publ),Sweden
+EPI-A.ST,Epiroc AB (publ),Sweden
+HEXA-B.ST,Hexagon AB (publ),Sweden
+INDU-C.ST,AB Industrivärden (publ),Sweden
+ALFA.ST,Alfa Laval AB (publ),Sweden
+ESSITY-B.ST,Essity AB (publ),Sweden
+TELIA.ST,Telia Company AB (publ),Sweden
+LUN.TO,Lundin Mining Corporation,Canada
+SOBI.ST,Swedish Orphan Biovitrum AB (publ),Sweden
+LUG.TO,Lundin Gold Inc.,Canada
+EVO.ST,Evolution AB (publ),Sweden
+LUND-B.ST,L E Lundbergföretagen AB (publ),Sweden
+LATO-B.ST,Investment AB Latour (publ),Sweden
+BOL.ST,Boliden AB (publ),Sweden
+LIFCO-B.ST,Lifco AB (publ),Sweden
+SKF-B.ST,AB SKF (publ),Sweden
+SKA-B.ST,Skanska AB (publ),Sweden
+TEL2-B.ST,Tele2 AB (publ),Sweden
+EQNR.OL,Equinor ASA,Norway
+DNB.OL,DNB Bank ASA,Norway
+KOG.OL,Kongsberg Gruppen ASA,Norway
+AKRBP.OL,Aker BP ASA,Norway
+TEL.OL,Telenor ASA,Norway
+NHY.OL,Norsk Hydro ASA,Norway
+VAR.OL,Vår Energi ASA,Norway
+MOWI.OL,Mowi ASA,Norway
+KNEBV.HE,KONE Oyj,Finland
+FORTUM.HE,Fortum Oyj,Finland
+NESTE.HE,Neste Oyj,Finland
+ORNBV.HE,Orion Oyj,Finland
+METSO.HE,Metso Oyj,Finland
+KESKOB.HE,Kesko Oyj,Finland
+BIRG.IR,Bank of Ireland Group plc,Ireland
+KRX.IR,Kingspan Group plc,Ireland
+KRZ.IR,Kerry Group plc,Ireland
+EDP.LS,"EDP, S.A.",Portugal
+BCP.LS,"Banco Comercial Português, S.A.",Portugal
+GALP.LS,"Galp Energia, SGPS, S.A.",Portugal
+JMT.LS,"Jerónimo Martins, SGPS, S.A.",Portugal
+8306.T,"Mitsubishi UFJ Financial Group, Inc.",Japan
+9983.T,"Fast Retailing Co., Ltd.",Japan
+8316.T,"Sumitomo Mitsui Financial Group, Inc.",Japan
+6098.T,"Recruit Holdings Co., Ltd.",Japan
+6857.T,Advantest Corporation,Japan
+6501.T,"Hitachi, Ltd.",Japan
+8035.T,Tokyo Electron Limited,Japan
+8411.T,"Mizuho Financial Group, Inc.",Japan
+6861.T,Keyence Corporation,Japan
+8766.T,"Tokio Marine Holdings, Inc.",Japan
+285A.T,Kioxia Holdings Corporation,Japan
+8031.T,"Mitsui & Co., Ltd.",Japan
+4519.T,"Chugai Pharmaceutical Co., Ltd.",Japan
+7182.T,"JAPAN POST BANK Co., Ltd.",Japan
+9433.T,KDDI Corporation,Japan
+4063.T,"Shin-Etsu Chemical Co., Ltd.",Japan
+7011.T,"Mitsubishi Heavy Industries, Ltd.",Japan
+6503.T,Mitsubishi Electric Corporation,Japan
+6981.T,"Murata Manufacturing Co., Ltd.",Japan
+8002.T,Marubeni Corporation,Japan
+8053.T,Sumitomo Corporation,Japan
+7741.T,HOYA Corporation,Japan
+8725.T,"MS&AD Insurance Group Holdings, Inc.",Japan
+7267.T,"Honda Motor Co., Ltd.",Japan
+6178.T,"Japan Post Holdings Co., Ltd.",Japan
+8750.T,"Daiichi Life Group, Inc.",Japan
+4578.T,"Otsuka Holdings Co., Ltd.",Japan
+8630.T,"Sompo Holdings, Inc.",Japan
+8015.T,Toyota Tsusho Corporation,Japan
+4661.T,"Oriental Land Co., Ltd.",Japan
+6702.T,Fujitsu Limited,Japan
+8591.T,ORIX Corporation,Japan
+6701.T,NEC Corporation,Japan
+5108.T,Bridgestone Corporation,Japan
+6723.T,Renesas Electronics Corporation,Japan
+4568.T,"Daiichi Sankyo Company, Limited",Japan
+6146.T,Disco Corporation,Japan
+6954.T,Fanuc Corporation,Japan
+8308.T,"Resona Holdings, Inc.",Japan
+3382.T,"Seven & i Holdings Co., Ltd.",Japan
+8802.T,"Mitsubishi Estate Co., Ltd.",Japan
+8309.T,"Sumitomo Mitsui Trust Group, Inc.",Japan
+6902.T,DENSO Corporation,Japan
+4503.T,Astellas Pharma Inc.,Japan
+5803.T,Fujikura Ltd.,Japan
+5802.T,"Sumitomo Electric Industries, Ltd.",Japan
+9020.T,East Japan Railway Company,Japan
+8604.T,"Nomura Holdings, Inc.",Japan
+7832.T,BANDAI NAMCO Holdings Inc.,Japan
+6762.T,TDK Corporation,Japan
+8801.T,"Mitsui Fudosan Co., Ltd.",Japan
+4901.T,FUJIFILM Holdings Corporation,Japan
+9022.T,Central Japan Railway Company,Japan
+7269.T,Suzuki Motor Corporation,Japan
+1605.T,Inpex Corporation,Japan
+2802.T,"Ajinomoto Co., Inc.",Japan
+6273.T,SMC Corporation,Japan
+6971.T,Kyocera Corporation,Japan
+4689.T,LY Corporation,Japan
+5401.T,Nippon Steel Corporation,Japan
+4452.T,Kao Corporation,Japan
+8267.T,"Aeon Co., Ltd.",Japan
+4543.T,Terumo Corporation,Japan
+4062.T,"Ibiden Co.,Ltd.",Japan
+4612.T,"Nippon Paint Holdings Co., Ltd.",Japan
+4307.T,"Nomura Research Institute, Ltd.",Japan
+8830.T,"Sumitomo Realty & Development Co., Ltd.",Japan
+5020.T,"ENEOS Holdings, Inc.",Japan
+6920.T,Lasertec Corporation,Japan
+9503.T,"The Kansai Electric Power Company, Incorporated",Japan
+1925.T,"Daiwa House Industry Co., Ltd.",Japan
+7936.T,ASICS Corporation,Japan
+6326.T,Kubota Corporation,Japan
+9735.T,"SECOM CO., LTD.",Japan
+9101.T,Nippon Yusen Kabushiki Kaisha,Japan
+4507.T,"Shionogi & Co., Ltd.",Japan
+4091.T,Nippon Sanso Holdings Corporation,Japan
+4004.T,Resonac Holdings Corporation,Japan
+4684.T,"OBIC Co.,Ltd.",Japan
+2502.T,"Asahi Group Holdings, Ltd.",Japan
+7453.T,"Ryohin Keikaku Co., Ltd.",Japan
+8601.T,Daiwa Securities Group Inc.,Japan
+7013.T,IHI Corporation,Japan
+2503.T,"Kirin Holdings Company, Limited",Japan
+7532.T,Pan Pacific International Holdings Corporation,Japan
+3659.T,"NEXON Co., Ltd.",Japan
+9104.T,"Mitsui O.S.K. Lines, Ltd.",Japan
+1928.T,"Sekisui House, Ltd.",Japan
+8795.T,"T&D Holdings, Inc.",Japan
+6988.T,Nitto Denko Corporation,Japan
+7550.T,"Zensho Holdings Co., Ltd.",Japan
+5713.T,"Sumitomo Metal Mining Co., Ltd.",Japan
+7270.T,Subaru Corporation,Japan
+7186.T,"Yokohama Financial Group, Inc.",Japan
+8473.T,"SBI Holdings, Inc.",Japan
+9843.T,"Nitori Holdings Co., Ltd.",Japan
+7733.T,Olympus Corporation,Japan
+9697.T,"Capcom Co., Ltd.",Japan
+8593.T,Mitsubishi HC Capital Inc.,Japan
+6532.T,"Baycurrent, Inc.",Japan
+9435.T,"Hikari Tsushin, Inc.",Japan
+8331.T,"The Chiba Bank, Ltd.",Japan
+6383.T,"Daifuku Co., Ltd.",Japan
+CBA.AX,Commonwealth Bank of Australia,Australia
+WBC.AX,Westpac Banking Corporation,Australia
+NAB.AX,National Australia Bank Limited,Australia
+WES.AX,Wesfarmers Limited,Australia
+GMG.AX,Goodman Group,Australia
+WDS.AX,Woodside Energy Group Ltd,Australia
+TLS.AX,Telstra Group Limited,Australia
+TCL.AX,Transurban Group,Australia
+FMG.AX,Fortescue Ltd,Australia
+QBE.AX,QBE Insurance Group Limited,Australia
+ALL.AX,Aristocrat Leisure Limited,Australia
+NST.AX,Northern Star Resources Limited,Australia
+SIG.AX,Sigma Healthcare Limited,Australia
+MQGPD.AX,Macquarie Group Limited,Australia
+COL.AX,Coles Group Limited,Australia
+AMCR,Amcor plc,Switzerland
+BXB.AX,Brambles Limited,Australia
+EVN.AX,Evolution Mining Limited,Australia
+NWSA,News Corporation,United States
+REA.AX,REA Group Limited,Australia
+SUN.AX,Suncorp Group Limited,Australia
+PME.AX,Pro Medicus Limited,Australia
+ORG.AX,Origin Energy Limited,Australia
+IAG.AX,Insurance Australia Group Limited,Australia
+SCG.AX,Scentre Group,Australia
+SOL.AX,Washington H. Soul Pattinson and Company Limited,Australia
+0941.HK,China Mobile Limited,Hong Kong
+0883.HK,CNOOC Limited,Hong Kong
+1088.HK,China Shenhua Energy Company Limited,China
+1299.HK,AIA Group Limited,Hong Kong
+3328.HK,"Bank of Communications Co., Ltd.",China
+3308.HK,"Zhongji Innolight Co., Ltd.",China
+1658.HK,"Postal Savings Bank of China Co., Ltd.",China
+2628.HK,China Life Insurance Company Limited,China
+2359.HK,"WuXi AppTec Co., Ltd.",China
+0386.HK,China Petroleum & Chemical Corporation,China
+MFC.TO,Manulife Financial Corporation,Canada
+2388.HK,BOC Hong Kong (Holdings) Limited,Hong Kong
+9633.HK,"Nongfu Spring Co., Ltd.",China
+0388.HK,Hong Kong Exchanges and Clearing Limited,Hong Kong
+3690.HK,Meituan,China
+0981.HK,Semiconductor Manufacturing International Corporation,China
+0019.HK,Swire Pacific Limited,Hong Kong
+0728.HK,China Telecom Corporation Limited,China
+2328.HK,PICC Property and Casualty Company Limited,China
+2475.HK,"Luxshare Precision Industry Co., Ltd.",China
+ONC,BeOne Medicines AG,Switzerland
+0267.HK,CITIC Limited,Hong Kong
+1276.HK,"Jiangsu Hengrui Pharmaceuticals Co.,Ltd",China
+2259.HK,Zijin Gold International Company Limited,Hong Kong
+6030.HK,CITIC Securities Company Limited,China
+0016.HK,Sun Hung Kai Properties Limited,Hong Kong
+0001.HK,CK Hutchison Holdings Limited,Hong Kong
+0669.HK,Techtronic Industries Company Limited,Hong Kong
+1919.HK,"COSCO SHIPPING Holdings Co., Ltd.",China
+2601.HK,"China Pacific Insurance (Group) Co., Ltd.",China
+3993.HK,CMOC Group Limited,China
+2714.HK,"Muyuan Foods Group Co., Ltd.",China
+1339.HK,The People's Insurance Company (Group) of China Limited,China
+6809.HK,"Montage Technology Co., Ltd.",China
+2020.HK,ANTA Sports Products Limited,China
+0992.HK,Lenovo Group Limited,Hong Kong
+2611.HK,"Guotai Haitong Securities Co., Ltd.",China
+1109.HK,China Resources Land Limited,Hong Kong
+TCOM,Trip.com Group Limited,Singapore
+3692.HK,Hansoh Pharmaceutical Group Company Limited,China
+0002.HK,CLP Holdings Limited,Hong Kong
+3986.HK,GigaDevice Semiconductor Inc.,China
+0066.HK,MTR Corporation Limited,Hong Kong
+2513.HK,"Z.AI Co., Ltd.",China
+2269.HK,WuXi Biologics (Cayman) Inc.,China
+1378.HK,China Hongqiao Group Limited,China
+9992.HK,Pop Mart International Group Limited,China
+1113.HK,CK Asset Holdings Limited,Hong Kong
+6818.HK,China Everbright Bank Company Limited,China
+1816.HK,"CGN Power Co., Ltd.",China
+2384.HK,"Suzhou Dongshan Precision Manufacturing Co., Ltd.",China
+1347.HK,Hua Hong Grace Semiconductor Limited,China
+0762.HK,China Unicom (Hong Kong) Limited,Hong Kong
+6936.HK,"S.F. Holding Co., Ltd.",China
+0788.HK,China Tower Corporation Limited,China
+1766.HK,CRRC Corporation Limited,China
+3288.HK,Foshan Haitian Flavouring and Food Company Ltd.,China
+6031.HK,"Sany Heavy Industry Co.,Ltd",China
+2423.HK,KE Holdings Inc.,China
+1972.HK,Swire Properties Limited,Hong Kong
+1801.HK,"Innovent Biologics, Inc.",China
+0027.HK,Galaxy Entertainment Group Limited,Hong Kong
+3606.HK,"Fuyao Glass Industry Group Co., Ltd.",China
+0012.HK,Henderson Land Development Company Limited,Hong Kong
+3908.HK,China International Capital Corporation Limited,China
+0006.HK,Power Assets Holdings Limited,Hong Kong
+1988.HK,"China Minsheng Banking Corp., Ltd.",China
+0003.HK,The Hong Kong and China Gas Company Limited,Hong Kong
+0688.HK,China Overseas Land & Investment Limited,Hong Kong
+1898.HK,China Coal Energy Company Limited,China
+9987.HK,"Yum China Holdings, Inc.",China
+6618.HK,JD Health International Inc.,China
+6951.HK,"Chaozhou Three-Circle (Group) Co.,Ltd.",China
+9973.HK,"Chery Automobile Co., Ltd.",China
+6886.HK,"Huatai Securities Co., Ltd.",China
+6869.HK,Yangtze Optical Fibre And Cable Joint Stock Limited Company,China
+1179.HK,H World Group Limited,China
+1776.HK,"GF Securities Co., Ltd.",China
+2057.HK,ZTO Express (Cayman) Inc.,China
+1929.HK,Chow Tai Fook Jewellery Group Limited,Hong Kong
+1336.HK,New China Life Insurance Company Ltd.,China
+0625.HK,SHEIN Global Holdings Limited,China
+1698.HK,Tencent Music Entertainment Group,China
+1308.HK,SITC International Holdings Company Limited,Hong Kong
+1024.HK,Kuaishou Technology,China
+1171.HK,Yankuang Energy Group Company Limited,China
+6990.HK,"Sichuan Kelun-Biotech Biopharmaceutical Co., Ltd.",China
+6099.HK,"China Merchants Securities Co., Ltd.",China
+0823.HK,Link Real Estate Investment Trust,Hong Kong
+0836.HK,China Resources Power Holdings Company Limited,Hong Kong
+0083.HK,Sino Land Company Limited,Hong Kong
+0902.HK,"Huaneng Power International, Inc.",China
+1177.HK,Sino Biopharmaceutical Limited,Hong Kong
+2476.HK,"Victory Giant Technology (HuiZhou) Co.,Ltd",China
+0316.HK,Orient Overseas (International) Limited,Hong Kong
+1997.HK,Wharf Real Estate Investment Company Limited,Hong Kong
+2050.HK,"Zhejiang Sanhua Intelligent Controls Co.,Ltd",China
+0501.HK,"OmniVision Integrated Circuits Group, Inc.",China
+3808.HK,Sinotruk (Hong Kong) Limited,China
+6823.HK,HKT Trust and HKT Limited,Hong Kong
+0293.HK,Cathay Pacific Airways Limited,Hong Kong
+1093.HK,CSPC Pharmaceutical Group Limited,China
+1880.HK,China Tourism Group Duty Free Corporation Limited,China
+0914.HK,Anhui Conch Cement Company Limited,China
+1209.HK,China Resources Mixc Lifestyle Services Limited,China
+2268.HK,WuXi XDC Cayman Inc.,China
+1519.HK,J&T Global Express Limited,China
+2015.HK,Li Auto Inc.,China
+0288.HK,WH Group Limited,Hong Kong
+D05.SI,DBS Group Holdings Ltd,Singapore
+O39.SI,Oversea-Chinese Banking Corporation Limited,Singapore
+Z74.SI,Singapore Telecommunications Limited,Singapore
+U11.SI,United Overseas Bank Limited,Singapore
+S63.SI,Singapore Technologies Engineering Ltd,Singapore
+C6L.SI,Singapore Airlines Limited,Singapore
+S68.SI,Singapore Exchange Limited,Singapore
+G07.SI,Great Eastern Holdings Limited,Singapore
+C38U.SI,CapitaLand Integrated Commercial Trust,Singapore
+F34.SI,Wilmar International Limited,Singapore
+BN4.SI,Keppel Ltd.,Singapore
+2454.TW,MediaTek Inc.,Taiwan
+2317.TW,"Hon Hai Precision Industry Co., Ltd.",Taiwan
+2308.TW,"Delta Electronics, Inc.",Taiwan
+3711.TW,"ASE Technology Holding Co., Ltd.",Taiwan
+1303.TW,Nan Ya Plastics Corporation,Taiwan
+2881.TW,"Fubon Financial Holding Co., Ltd.",Taiwan
+2882.TW,"Cathay Financial Holding Co., Ltd.",Taiwan
+2891.TW,"CTBC Financial Holding Co., Ltd.",Taiwan
+2383.TW,"Elite Material Co., Ltd.",Taiwan
+2408.TW,Nanya Technology Corporation,Taiwan
+3037.TW,Unimicron Technology Corp.,Taiwan
+2412.TW,"Chunghwa Telecom Co., Ltd.",Taiwan
+2303.TW,United Microelectronics Corporation,Taiwan
+3017.TW,"Asia Vital Components Co., Ltd.",Taiwan
+3443.TW,Global Unichip Corp.,Taiwan
+2382.TW,Quanta Computer Inc.,Taiwan
+2887.TW,"TS Financial Holding Co., Ltd.",Taiwan
+2885.TW,"Yuanta Financial Holding Co., Ltd.",Taiwan
+6669.TW,Wiwynn Corporation,Taiwan
+6505.TW,Formosa Petrochemical Corporation,Taiwan
+2884.TW,"E.SUN Financial Holding Company, Ltd.",Taiwan
+2345.TW,Accton Technology Corporation,Taiwan
+2327.TW,Yageo Corporation,Taiwan
+2886.TW,"Mega Financial Holding Co., Ltd.",Taiwan
+3653.TW,"Jentech Precision Industrial Co., Ltd",Taiwan
+2059.TW,"King Slide Works Co., Ltd.",Taiwan
+7769.TW,"Hon. Precision, Inc.",Taiwan
+2880.TW,"Hua Nan Financial Holdings Co., Ltd.",Taiwan
+3018.TW,"Lung Ming Green Energy Technology Engineering Co., Ltd.",Taiwan
+3008.TW,"Largan Precision Co., Ltd.",Taiwan
+2357.TW,ASUSTeK Computer Inc.,Taiwan
+2890.TW,SinoPac Financial Holdings Company Limited,Taiwan
+8046.TW,Nan Ya Printed Circuit Board Corporation,Taiwan
+2892.TW,"First Financial Holding Co., Ltd.",Taiwan
+2883.TW,"KGI Financial Holding Co., Ltd.",Taiwan
+2360.TW,Chroma ATE Inc.,Taiwan
+3231.TW,Wistron Corporation,Taiwan
+6446.TW,PharmaEssentia Corporation,Taiwan
+2002A.TW,China Steel Corporation,Taiwan
+2344.TW,Winbond Electronics Corporation,Taiwan
+2603.TW,Evergreen Marine Corporation (Taiwan) Ltd.,Taiwan
+2368.TW,Gold Circuit Electronics Ltd.,Taiwan
+2395.TW,"Advantech Co., Ltd.",Taiwan
+2301.TW,Lite-On Technology Corporation,Taiwan
+5880.TW,"Taiwan Cooperative Financial Holding Co., Ltd.",Taiwan
+1301.TW,Formosa Plastics Corporation,Taiwan
+1216.TW,Uni-President Enterprises Corp.,Taiwan
+1326.TW,Formosa Chemicals & Fibre Corporation,Taiwan
+3045.TW,"Taiwan Mobile Co., Ltd.",Taiwan
+4904.TW,"Far EasTone Telecommunications Co., Ltd.",Taiwan
+2379.TW,Realtek Semiconductor Corp.,Taiwan
+000660.KS,SK hynix Inc.,South Korea
+402340.KS,"SK Square Co., Ltd.",South Korea
+373220.KS,"LG Energy Solution, Ltd.",South Korea
+005380.KS,Hyundai Motor Company,South Korea
+207940.KS,"Samsung Biologics Co.,Ltd.",South Korea
+009150.KS,"Samsung Electro-Mechanics Co., Ltd.",South Korea
+105560.KS,KB Financial Group Inc.,South Korea
+068270.KS,"Celltrion, Inc.",South Korea
+028260.KS,Samsung C&T Corporation,South Korea
+032830.KS,"Samsung Life Insurance Co., Ltd.",South Korea
+055550.KS,"Shinhan Financial Group Co., Ltd.",South Korea
+006400.KS,"Samsung SDI Co., Ltd.",South Korea
+000270.KS,Kia Corporation,South Korea
+034730.KS,SK Inc.,South Korea
+086790.KS,Hana Financial Group Inc.,South Korea
+012450.KS,"Hanwha Aerospace Co., Ltd.",South Korea
+012330.KS,"Hyundai Mobis Co.,Ltd",South Korea
+034020.KS,"Doosan Enerbility Co., Ltd.",South Korea
+329180.KS,"HD Hyundai Heavy Industries Co., Ltd.",South Korea
+035420.KS,NAVER Corporation,South Korea
+066570.KS,LG Electronics Inc.,South Korea
+316140.KS,Woori Financial Group Inc.,South Korea
+000810.KS,"Samsung Fire & Marine Insurance Co., Ltd.",South Korea
+005490.KS,POSCO Holdings Inc.,South Korea
+011200.KS,"HMM Co.,Ltd",South Korea
+138040.KS,Meritz Financial Group Inc.,South Korea
+096770.KS,"SK Innovation Co., Ltd.",South Korea
+010120.KS,"LS ELECTRIC Co., Ltd.",South Korea
+033780.KS,KT&G Corporation,South Korea
+051910.KS,"LG Chem, Ltd.",South Korea
+018260.KS,"Samsung SDS Co., Ltd.",South Korea
+017670.KS,"SK Telecom Co., Ltd.",South Korea
+010130.KS,"Korea Zinc Company, Ltd.",South Korea
+042700.KS,"HANMI Semiconductor Co., Ltd.",South Korea
+298040.KS,Hyosung Heavy Industries Corporation,South Korea
+009540.KS,"HD Korea Shipbuilding & Offshore Engineering Co., Ltd.",South Korea
+003670.KS,"Posco Future M Co., Ltd.",South Korea
+086280.KS,"Hyundai Glovis Co., Ltd.",South Korea
+024110.KS,Industrial Bank of Korea,South Korea
+267260.KS,"HD Hyundai Electric Co., Ltd.",South Korea
+042660.KS,"Hanwha Ocean Co., Ltd.",South Korea
+RY.TO,Royal Bank of Canada,Canada
+TD.TO,The Toronto-Dominion Bank,Canada
+SHOP.TO,Shopify Inc.,Canada
+BMO.TO,Bank of Montreal,Canada
+BNS.TO,The Bank of Nova Scotia,Canada
+ENB.TO,Enbridge Inc.,Canada
+CM.TO,Canadian Imperial Bank of Commerce,Canada
+CNQ.TO,Canadian Natural Resources Limited,Canada
+BN.TO,Brookfield Corporation,Canada
+BAM,Brookfield Asset Management Ltd.,United States
+CP.TO,Canadian Pacific Kansas City Limited,Canada
+SU.TO,Suncor Energy Inc.,Canada
+CNR.TO,Canadian National Railway Company,Canada
+TRP.TO,TC Energy Corporation,Canada
+BCE.TO,BCE Inc.,Canada
+IMO.TO,Imperial Oil Limited,Canada
+GWO.TO,Great-West Lifeco Inc.,Canada
+NA.TO,National Bank of Canada,Canada
+L.TO,Loblaw Companies Limited,Canada
+ATD.TO,Alimentation Couche-Tard Inc.,Canada
+CVE.TO,Cenovus Energy Inc.,Canada
+CSU.TO,Constellation Software Inc.,Canada
+WCN,"Waste Connections, Inc.",United States
+FNV.TO,Franco-Nevada Corporation,Canada
+TRI.TO,Thomson Reuters Corporation,Canada
+DOL.TO,Dollarama Inc.,Canada
+POW.TO,Power Corporation of Canada,Canada
+SLF.TO,Sun Life Financial Inc.,Canada
+FFH.TO,Fairfax Financial Holdings Limited,Canada
+IFC.TO,Intact Financial Corporation,Canada
+CCO.TO,Cameco Corporation,Canada
+FTS.TO,Fortis Inc.,Canada
+CLS.TO,Celestica Inc.,Canada
+TECK-B.TO,Teck Resources Limited,Canada
+WN.TO,George Weston Limited,Canada
+PPL.TO,Pembina Pipeline Corporation,Canada
+QSR,Restaurant Brands International Inc.,United States
+QSP-UN.TO,Restaurant Brands International Limited Partnership,Canada
+H.TO,Hydro One Limited,Canada
+PWF-PT.TO,Power Financial Corporation,Canada
+BBD-B.TO,Bombardier Inc.,Canada
+FM.TO,First Quantum Minerals Ltd.,Canada
+GFL,GFL Environmental Inc.,United States
+RCI-B.TO,Rogers Communications Inc.,Canada
+BIP,Brookfield Infrastructure Partners L.P.,Bermuda
+TOU.TO,Tourmaline Oil Corp.,Canada
+WSP.TO,WSP Global Inc.,Canada
+OVV,Ovintiv Inc.,United States
+RBA,"RB Global, Inc.",United States
+GIB-A.TO,CGI Inc.,Canada
+MG.TO,Magna International Inc.,Canada
+EMA.TO,Emera Incorporated,Canada
+PAAS.TO,Pan American Silver Corp.,Canada
+WCP.TO,Whitecap Resources Inc.,Canada
+MRU.TO,Metro Inc.,Canada
+IGM.TO,IGM Financial Inc.,Canada
+T.TO,TELUS Corporation,Canada
+IAG.TO,iA Financial Corporation Inc.,Canada
+SAP.TO,Saputo Inc.,Canada
+QBR-B.TO,Quebecor Inc.,Canada
+ATZ.TO,Aritzia Inc.,Canada
+X.TO,TMX Group Limited,Canada
+EQX.TO,Equinox Gold Corp.,Canada
+ALA.TO,AltaGas Ltd.,Canada
+AGI.TO,Alamos Gold Inc.,Canada
+CCL-B.TO,CCL Industries Inc.,Canada
+BEP-PM.TO,Brookfield Renewable Partners L.P.,Canada
+TIH.TO,Toromont Industries Ltd.,Canada
+BNT,Brookfield Wealth Solutions Ltd.,Bermuda
+GE,GE Aerospace,United States
+CRWD,"CrowdStrike Holdings, Inc.",United States
+ARM,Arm Holdings plc,United Kingdom
+WELL,Welltower Inc.,United States
+SCCO,Southern Copper Corporation,United States
+HDB,HDFC Bank Limited,India
+IBN,ICICI Bank Limited,India
+PDD,PDD Holdings Inc.,Ireland
+NET,"Cloudflare, Inc.",United States
+WAT,Waters Corporation,United States
+RCL,Royal Caribbean Cruises Ltd.,United States
+ITUB,Itaú Unibanco Holding S.A.,Brazil
+EPD,Enterprise Products Partners L.P.,United States
+RSG,"Republic Services, Inc.",United States
+SLB,SLB N.V.,United States
+AMX,"América Móvil, S.A.B. de C.V.",Mexico
+APO,"Apollo Global Management, Inc.",United States
+DLR,"Digital Realty Trust, Inc.",United States
+CAH,"Cardinal Health, Inc.",United States
+NU,Nu Holdings Ltd.,Brazil
+TRGP,Targa Resources Corp.,United States
+LNG,"Cheniere Energy, Inc.",United States
+PSA,Public Storage,United States
+TEL,TE Connectivity plc,Ireland
+MPLX,MPLX LP,United States
+NUE,Nucor Corporation,United States
+OKE,"ONEOK, Inc.",United States
+HUM,Humana Inc.,United States
+ETR,Entergy Corporation,United States
+TEVA,Teva Pharmaceutical Industries Limited,Israel
+VMRK,"AvalonBay Communities, Inc.",United States
+FITB,Fifth Third Bancorp,United States
+A,"Agilent Technologies, Inc.",United States
+VYLR,Vylor Inc.,United States
+HEI,HEICO Corporation,United States
+CTA-PB,"EIDP, Inc.",United States
+VTR,"Ventas, Inc.",United States
+NTRA,"Natera, Inc.",United States
+SE,Sea Limited,Singapore
+FMX,"Fomento Económico Mexicano, S.A.B. de C.V.",Mexico
+AU,AngloGold Ashanti plc,United States
+ABEV,Ambev S.A.,Brazil
+UI,Ubiquiti Inc.,United States
+VIK,Viking Holdings Ltd,Bermuda
+DHI,"D.R. Horton, Inc.",United States
+CCL,Carnival Corporation Ltd.,United States
+FIX,"Comfort Systems USA, Inc.",United States
+RKT,"Rocket Companies, Inc.",United States
+CBRE,"CBRE Group, Inc.",United States
+SKYD,Skydance Corporation,United States
+BSBR,Banco Santander (Brasil) S.A.,Brazil
+GEHC,GE HealthCare Technologies Inc.,United States
+MLM,"Martin Marietta Materials, Inc.",United States
+P,"Everpure, Inc.",United States
+VMC,Vulcan Materials Company,United States
+RBLX,Roblox Corporation,United States
+ACGL,Arch Capital Group Ltd.,Bermuda
+CNC,Centene Corporation,United States
+IRM,Iron Mountain Incorporated,United States
+ESLT,Elbit Systems Ltd.,Israel
+EXR,Extra Space Storage Inc.,United States
+STLD,"Steel Dynamics, Inc.",United States
+RJF,"Raymond James Financial, Inc.",United States
+NTRS,Northern Trust Corporation,United States
+OKTA,"Okta, Inc.",United States
+SN,"SharkNinja, Inc.",United States
+AEE,Ameren Corporation,United States
+EC,Ecopetrol S.A.,Colombia
+MTB,M&T Bank Corporation,United States
+GFI,Gold Fields Limited,South Africa
+WTW,Willis Towers Watson Public Limited Company,United Kingdom
+RPRX,Royalty Pharma plc,United States
+LH,Labcorp Holdings Inc.,United States
+WSM,"Williams-Sonoma, Inc.",United States
+CQP,"Cheniere Energy Partners, L.P.",United States
+ATO,Atmos Energy Corporation,United States
+TDY,Teledyne Technologies Incorporated,United States
+CPRT,"Copart, Inc.",United States
+BAP,Credicorp Ltd.,Peru
+WST,"West Pharmaceutical Services, Inc.",United States
+ROIV,Roivant Sciences Ltd.,United Kingdom
+FWONK,Formula One Group,United States
+FLEX,Flex Ltd.,United States
+CFG,"Citizens Financial Group, Inc.",United States
+FE,FirstEnergy Corp.,United States
+AER,AerCap Holdings N.V.,Ireland
+INSM,Insmed Incorporated,United States
+CBRS,Cerebras Systems Inc.,United States
+CASY,"Casey's General Stores, Inc.",United States
+JBL,Jabil Inc.,United States
+DRI,"Darden Restaurants, Inc.",United States
+STE,STERIS plc,United States
+EXPD,"Expeditors International of Washington, Inc.",United States
+ATI,ATI Inc.,United States
+CRDO,Credo Technology Group Holding Ltd,Cayman Islands
+INCY,Incyte Corporation,United States
+IOT,Samsara Inc.,United States
+MKL,Markel Group Inc.,United States
+PFG,"Principal Financial Group, Inc.",United States
+BRO,"Brown & Brown, Inc.",United States
+U,Unity Software Inc.,United States
+PHM,"PulteGroup, Inc.",United States
+EIX,Edison International,United States
+GFS,GLOBALFOUNDRIES Inc.,United States
+HUBB,Hubbell Incorporated,United States
+LPLA,LPL Financial Holdings Inc.,United States
+L,Loews Corporation,United States
+RBRK,"Rubrik, Inc.",United States
+PKG,Packaging Corporation of America,United States
+SW,Smurfit Westrock Plc,Ireland
+NI,NiSource Inc.,United States
+BBY,"Best Buy Co., Inc.",United States
+RS,"Reliance, Inc.",United States
+BR,"Broadridge Financial Solutions, Inc.",United States
+RGLD,"Royal Gold, Inc.",United States
+CDW,CDW Corporation,United States
+EVRG,"Evergy, Inc.",United States
+GH,"Guardant Health, Inc.",United States
+DD,"DuPont de Nemours, Inc.",United States
+TOST,"Toast, Inc.",United States
+TPL,Texas Pacific Land Corporation,United States
+LEN,Lennar Corporation,United States
+BCH,Banco de Chile,Chile
+SBAC,SBA Communications Corporation,United States
+BG,Bunge Global SA,United States
+WWD,"Woodward, Inc.",United States
+VIV,Telefônica Brasil S.A.,Brazil
+LNT,Alliant Energy Corporation,United States
+SNA,Snap-on Incorporated,United States
+RDDT,"Reddit, Inc.",United States
+SNX,TD SYNNEX Corporation,United States
+ITT,ITT Inc.,United States
+SSNC,"SS&C Technologies Holdings, Inc.",United States
+ROL,"Rollins, Inc.",United States
+NVT,nVent Electric plc,United Kingdom
+J,Jacobs Solutions Inc.,United States
+APG,APi Group Corporation,United States
+BEN,Franklin Templeton Inc.,United States
+FTAI,FTAI Aviation Ltd.,United States
+CF,"CF Industries Holdings, Inc.",United States
+MEDP,"Medpace Holdings, Inc.",United States
+NDSN,Nordson Corporation,United States
+ASND,Ascendis Pharma A/S,Denmark
+GEN,Gen Digital Inc.,United States
+EWBC,"East West Bancorp, Inc.",United States
+RGA,"Reinsurance Group of America, Incorporated",United States
+PS,Pershing Square Inc.,United States
+MTSI,"MACOM Technology Solutions Holdings, Inc.",United States
+RIVN,"Rivian Automotive, Inc.",United States
+ESS,"Essex Property Trust, Inc.",United States
+FFIV,"F5, Inc.",United States
+PFGC,Performance Food Group Company,United States
+H,Hyatt Hotels Corporation,United States
+HST,"Host Hotels & Resorts, Inc.",United States
+IEX,IDEX Corporation,United States
+WES,"Western Midstream Partners, LP",United States
+AS,"Amer Sports, Inc.",Finland
+SBS,Companhia de Saneamento Básico do Estado de São Paulo - SABESP,Brazil
+PAA,"Plains All American Pipeline, L.P.",United States
+DINO,HF Sinclair Corporation,United States
+RVTY,"Revvity, Inc.",United States
+KSPI,Joint Stock Company Kaspi.kz,Kazakhstan
+GPC,Genuine Parts Company,United States
+KIM,Kimco Realty Corporation,United States
+NBIX,"Neurocrine Biosciences, Inc.",United States
+TYL,"Tyler Technologies, Inc.",United States
+EXEL,"Exelixis, Inc.",United States
+JLL,Jones Lang LaSalle Incorporated,United States
+TSEM,Tower Semiconductor Ltd.,Israel
+NTNX,"Nutanix, Inc.",United States
+LAMR,Lamar Advertising Company,United States
+TLN,Talen Energy Corporation,United States
+MAS,Masco Corporation,United States
+APA,APA Corporation,United States
+ULS,UL Solutions Inc.,United States
+CRL,"Charles River Laboratories International, Inc.",United States
+LSCC,Lattice Semiconductor Corporation,United States
+CRBG,"Corebridge Financial, Inc.",United States
+LDOS,"Leidos Holdings, Inc.",United States
+EG,"Everest Group, Ltd.",Bermuda
+AIZ,"Assurant, Inc.",United States
+WCC,"WESCO International, Inc.",United States
+CHRW,"C.H. Robinson Worldwide, Inc.",United States
+CLH,"Clean Harbors, Inc.",United States
+INVH,Invitation Homes Inc.,United States
+TRU,TransUnion,United States
+FICO,Fair Isaac Corporation,United States
+RBC,RBC Bearings Incorporated,United States
+LECO,"Lincoln Electric Holdings, Inc.",United States
+W,Wayfair Inc.,United States
+SQM,Sociedad Química y Minera de Chile S.A.,Chile
+CSL,Carlisle Companies Incorporated,United States
+BSAC,Banco Santander-Chile,Chile
+BURL,"Burlington Stores, Inc.",United States
+CX,"CEMEX, S.A.B. de C.V.",Mexico
+SOLV,Solventum Corporation,United States
+WPC,W. P. Carey Inc.,United States
+DOCU,"DocuSign, Inc.",United States
+WY,Weyerhaeuser Company,United States
+EQH,"Equitable Holdings, Inc.",United States
+MANH,"Manhattan Associates, Inc.",United States
+YPF,YPF Sociedad Anónima,Argentina
+ICLR,ICON Public Limited Company,Ireland
+MKSI,MKS Inc.,United States
+GKOS,Glaukos Corporation,United States
+BF-B,Brown-Forman Corporation,United States
+CRS,Carpenter Technology Corporation,United States
+ERIE,Erie Indemnity Company,United States
+OHI,"Omega Healthcare Investors, Inc.",United States
+NXT,Nextpower Inc.,United States
+RNR,RenaissanceRe Holdings Ltd.,Bermuda
+COKE,"Coca-Cola Consolidated, Inc.",United States
+ARMK,Aramark,United States
+AVY,Avery Dennison Corporation,United States
+CACI,CACI International Inc,United States
+TXT,Textron Inc.,United States
+BTSG,"BrightSpring Health Services, Inc.",United States
+FROG,JFrog Ltd.,United States
+TKO,"TKO Group Holdings, Inc.",United States
+SUI,"Sun Communities, Inc.",United States
+FLUT,Flutter Entertainment plc,United States
+PAC,"Grupo Aeroportuario del Pacífico, S.A.B. de C.V.",Mexico
+CG,The Carlyle Group Inc.,United States
+EMBJ,Embraer S.A.,Brazil
+SGI,Somnigroup International Inc.,United States
+REG,Regency Centers Corporation,United States
+BJ,"BJ's Wholesale Club Holdings, Inc.",United States
+CART,Maplebear Inc.,United States
+PAG,"Penske Automotive Group, Inc.",United States
+NLY,"Annaly Capital Management, Inc.",United States
+ARCC,Ares Capital Corporation,United States
+GDDY,GoDaddy Inc.,United States
+EHC,Encompass Health Corporation,United States
+DOC,"Healthpeak Properties, Inc.",United States
+MAA,"Mid-America Apartment Communities, Inc.",United States
+TOL,"Toll Brothers, Inc.",United States
+FIVE,"Five Below, Inc.",United States
+LTM,LATAM Airlines Group S.A.,Chile
+IONQ,"IonQ, Inc.",United States
+AHR,"American Healthcare REIT, Inc.",United States
+ELAN,Elanco Animal Health Incorporated,United States
+AFG,"American Financial Group, Inc.",United States
+TIGO,Millicom International Cellular S.A.,Luxembourg
+RPM,RPM International Inc.,United States
+CNA,CNA Financial Corporation,United States
+CCK,"Crown Holdings, Inc.",United States
+QXO,"QXO, Inc.",United States
+GRAB,Grab Holdings Limited,Singapore
+GWRE,"Guidewire Software, Inc.",United States
+KEP,Korea Electric Power Corporation,South Korea
+PNW,Pinnacle West Capital Corporation,United States
+WTRG,"Essential Utilities, Inc.",United States
+SEIC,SEI Investments Company,United States
+CHYM,"Chime Financial, Inc.",United States
+TRMB,Trimble Inc.,United States
+WSO,"Watsco, Inc.",United States
+IVZ,Invesco Ltd.,United States
+PEN,"Penumbra, Inc.",United States
+UNM,Unum Group,United States
+JKHY,"Jack Henry & Associates, Inc.",United States
+RDY,Dr. Reddy's Laboratories Limited,India
+DTM,"DT Midstream, Inc.",United States
+CR,Crane Company,United States
+GL,Globe Life Inc.,United States
+IT,"Gartner, Inc.",United States
+RRC,Range Resources Corporation,United States
+ELS,"Equity LifeStyle Properties, Inc.",United States
+HII,"Huntington Ingalls Industries, Inc.",United States
+WTS,"Watts Water Technologies, Inc.",United States
+MLI,"Mueller Industries, Inc.",United States
+MAIR,Madison Air Solutions Corporation,United States
+AR,Antero Resources Corporation,United States
+SUZ,Suzano S.A.,Brazil
+SAIL,"SailPoint, Inc.",United States
+RRX,Regal Rexnord Corporation,United States
+FDS,FactSet Research Systems Inc.,United States
+FN,Fabrinet,Cayman Islands
+NYT,The New York Times Company,United States
+FNF,"Fidelity National Financial, Inc.",United States
+GGG,Graco Inc.,United States
+PCOR,"Procore Technologies, Inc.",United States
+AMH,American Homes 4 Rent,United States
+UDR,"UDR, Inc.",United States
+ALLY,Ally Financial Inc.,United States
+TLK,Perusahaan Perseroan (Persero) PT Telekomunikasi Indonesia Tbk,Indonesia
+GLPI,"Gaming and Leisure Properties, Inc.",United States
+TECH,Bio-Techne Corporation,United States
+HALO,"Halozyme Therapeutics, Inc.",United States
+BWXT,"BWX Technologies, Inc.",United States
+EVR,Evercore Inc.,United States
+GNRC,Generac Holdings Inc.,United States
+PAYC,"Paycom Software, Inc.",United States
+UHS,"Universal Health Services, Inc.",United States
+BMRN,BioMarin Pharmaceutical Inc.,United States
+FHN,First Horizon Corporation,United States
